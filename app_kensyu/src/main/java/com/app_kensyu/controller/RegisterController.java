@@ -5,22 +5,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- * メニュー画面のコントローラー
- */
-
 @RequestMapping("/*")
 @Controller
-public class MenuController {
+public class RegisterController {
 
     /**
-     * 初期表示
-     * ＠param model 画面のモデル
-     * @return メニュー画面
+     * 社員情報登録画面
+     * @param model 画面のモデル
+     * @return 社員情報登録画面
      */
-    @GetMapping("top")
-    public String top(Model model) {
-        return "menu";
+    @GetMapping("Register")
+    public String Register(Model model) {
+        return "Register";
     }
 
 }
