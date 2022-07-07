@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+<title>メニュー画面</title>
+</head>
+<body>
+		<h1 id="memuh1" th:text="${value1}"></h1>
+		<h2 id="memuh2" th:text="${value2}"></h2>
+
+		<div class="munulink">
+				<a th:href="@{/Register}">社員情報登録</a>
+		</div>
+		<div class="munulink">
+				<a th:href="@{/EmployeeList}">社員情報一覧</a>
+		</div>
+</body>
+</html>
