@@ -1,11 +1,11 @@
-#memuh1 {
+#app-name {
 	width: 100%;
 	text-align: center;
 	background-color: #7ecdf0;
 	padding: 20px 0;
 }
 
-.munulink {
+.menu-link {
 	width: 30%;
 	text-align: center;
 	border: solid 2px #aab3b3;

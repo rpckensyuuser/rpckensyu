@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app_kensyu.dao.InsertDao">
+    <insert id="insertTemployeeTbl" parameterType="com.app_kensyu.entity.TemployeeEntity" useGeneratedKeys="true" keyProperty="id">
+        insert into TEMPLOYEE_TBL
+        (NAME,SEX,BIRTHDAY,ZIP,ADDRESS1,ADDRESS2,NYUSHAYM,DIVISION,HOBBY1,HOBBY2,HOBBY3,SELF_INTRO)
+        values
+        (#{name},#{sex},#{birthday},#{zip},#{adress1},#{adress2},#{nyushaym},#{division},#{hobby1},#{hobby2},#{hobby3},#{self_intro})
+    </insert>
+
+    <insert id="insertTcarerrTbl" parameterType="com.app_kensyu.entity.TcareerEntity">
+        <selectKey keyProperty="seq" resultType="long" order="BEFORE">
+            SELECT COUNT(*)+1 FROM TCAREER_TBL;
+        </selectKey>
+        insert into TCAREER_TBL
+        (ID,SEQ,START_DATE,END_DATE,PROPOSITION)
+        values
+        (#{id},#{seq},#{start_date},#{end_date},#{proposition})
+    </insert>
+</mapper>
