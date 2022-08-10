@@ -2,62 +2,90 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="index.js"></script>
+<script type="text/javascript" th:src="@{/js/kensyu.js}"></script>
 <title>社員情報登録画面</title>
 </head>
 <body>
-		<h1 th:text="${value1}"></h1>
-		<h1 th:text="${value2}"></h1>
 
-		<form method="post" action="exetute">
-				<button type="submit" name="text" th:value="Register">社員情報登録</button>
-				<button type="submit" name="text" th:value="EmployeeList">社員情報一覧</button>
+  <h1 id="app-name">（研修用）社員管理システム</h1>
+  <h2 th:text="${screen_name}"></h2>
 
-				<table border="1">
-						<tr>
-								<th>ID：</th>
-								<th></th>
-						</tr>
-						<tr>
-								<td>社員名：</td>
-								<td></td>
-						</tr>
-						<tr>
-								<td>性別：</td>
-								<td></td>
-						</tr>
-						<tr>
-								<td>生年月日：</td>
-								<td></td>
-						</tr>
-						<tr>
-								<td>郵便番号：</td>
-								<td></td>
-						</tr>
-						<tr>
-								<td>住所1：</td>
-								<td></td>
-						</tr>
-						<tr>
-								<td>住所2：</td>
-								<td></td>
-						</tr>
-						<tr>
-								<td>入社年月：</td>
-								<td></td>
-						</tr>
-						<tr>
-								<td>所属部署：</td>
-								<td></td>
-						</tr>
-						<tr>
-								<td>趣味</td>
-								<td></td>
-						</tr>
-						<tr>
-								<td>自己紹介：</td>
-								<td></td>
-						</tr>
-				</table>
-		</form>
+  <h2>基本情報</h2>
+  <form method="post" th:action="@{insert}" th:object="${insertFormParam}">
+    <div>
+      <label for="value1">ID：</label>
+      <p th:text="${register_id}"></p>
+    </div>
+    <div>
+      <label for="value2">社員名：<input type="text" th:field="*{formDataList[0].name}">
+      </label>
+    </div>
+    <div>
+      <label for="value3">性別：<input type="radio" th:field="*{formDataList[0].sex}" value="M" checked>男性 <input type="radio"
+        th:field="*{formDataList[0].sex}" value="F">女性
+      </label>
+    </div>
+    <div>
+      <label for="value4">生年月日：<input type="date" th:field="*{formDataList[0].birthday}" max="9999-12-31">
+      </label>
+    </div>
+    <div>
+      <label for="value5">郵便番号：<input type="text" id="postcode" th:field="*{formDataList[0].zip}" placeholder="999-9999">
+      </label>
+      <button type='button' id="btn">検索</button>
+    </div>
+    <div id="result">
+      <label for="value6">住所1：<input type="text" id="address1" th:field="*{formDataList[0].adress1}">
+      </label>
+    </div>
+    <div>
+      <label for="value7">住所2：<input type="text" th:field="*{formDataList[0].adress2}">
+      </label>
+    </div>
+    <div>
+      <label for="value8">入社年月：<input type="text" th:field="*{formDataList[0].nyushaym}"></input>
+      </label>
+    </div>
+    <div>
+      <label for="value9">所属部署：<select>
+          <option th:field="*{formDataList[0].division}" value="1">ITサービス部</option>
+          <option th:field="*{formDataList[0].division}" value="2">IST部</option>
+          <option th:field="*{formDataList[0].division}" value="3">ITソリューション部</option>
+      </select></label>
+    </div>
+    <div>
+      <label for="value10">趣味： <input type="checkbox" th:field="*{formDataList[0].hobby}" value="1">映画鑑賞 <input type="checkbox"
+        th:field="*{formDataList[0].hobby}" value="2">音楽鑑賞 <input type="checkbox" th:field="*{formDataList[0].hobby}" value="3">スポーツ <input
+        type="checkbox" th:field="*{formDataList[0].hobby}" value="4">ゲーム <input type="checkbox" th:field="*{formDataList[0].hobby}" value="5">釣り
+        <input type="checkbox" th:field="*{formDataList[0].hobby}" value="6">ドライブ <input type="checkbox" th:field="*{formDataList[0].hobby}"
+        value="7">読書 <input type="checkbox" th:field="*{formDataList[0].hobby}" value="8">仕事 <input type="checkbox"
+        th:field="*{formDataList[0].hobby}" value="9">その他
+      </label>
+    </div>
+    <div>
+      <label for="value11">自己紹介：<textarea th:field="*{formDataList[0].self_intro}" rows="3" cols="60">自己紹介文を入力してください。</textarea></label>
+    </div>
+    <label for="value12">職歴情報</label> <input type="button" value="追加" onclick="coladd()">
+    <table id="tablevalue12">
+      <tr>
+        <td>開始期間</td>
+        <td>終了期間</td>
+        <td>案件名</td>
+        <td>編集</td>
+      </tr>
+      <tr th:each="formData, st : *{formDataList}">
+        <td><input type="date" th:name="${st.count}" th:field="*{formDataList[__${st.index}__].start_date}"></td>
+        <td><input type="date" th:name="${st.count}" th:field="*{formDataList[__${st.index}__].end_date}"></td>
+        <td><input type="text" th:name="${st.count}" th:field="*{formDataList[__${st.index}__].proposition}"></td>
+        <td><input type="button" value=削除 id="coldel_btn" onclick="coldel(this)"></td>
+      </tr>
+    </table>
+    <button type="submit">登録</button>
+    <button type="submit">登録</button>
+  </form>
+
 </body>
 </html>
