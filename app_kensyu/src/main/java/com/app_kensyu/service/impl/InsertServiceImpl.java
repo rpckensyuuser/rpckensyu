@@ -30,9 +30,9 @@ public class InsertServiceImpl implements InsertService {
             temployeeEntity.setAdress2(data.getAdress2());
             temployeeEntity.setNyushaym(data.getNyushaym());
             temployeeEntity.setDivision(data.getDivision());
-            temployeeEntity.setHobby1(data.getHobby()[0]);
-            temployeeEntity.setHobby2(data.getHobby()[1]);
-            temployeeEntity.setHobby3(data.getHobby()[2]);
+            for (String hobby : data.getHobby()) {
+                temployeeEntity.setHobby1(hobby);
+            }
             temployeeEntity.setSelf_intro(data.getSelf_intro());
         }
 
