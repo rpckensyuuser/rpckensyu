@@ -20,7 +20,14 @@ $(function() {
 	}
 });
 
+ /*
+  * 粕谷コメント
+  * 以下の関数はRegister.jsに移動しています(コメント化しています)
+  * 理由としては共通的な関数ではなく
+  * 特定のページにて使用される関数だからです
+  */
 
+/*
 function coladd() {
 	var table = document.getElementById("tablevalue12");
 
@@ -47,3 +54,4 @@ function coldel(obj) {
 	// trのインデックスを取得して行を削除する
 	tr.parentNode.deleteRow(tr.sectionRowIndex);
 }
+*/

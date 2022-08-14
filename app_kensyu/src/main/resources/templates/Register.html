@@ -6,6 +6,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="index.js"></script>
 <script type="text/javascript" th:src="@{/js/kensyu.js}"></script>
+<!--
+    粕谷コメント
+    ページごとにjsをまとめた方がいいと思います。
+    共通的に使用するものは『common.js』のような名前でレイアウト等で呼び出してもOKです
+    jsをあまり一か所に集めすぎるとjsファイルが長くなってしまい
+    可読性が下がることがあります。
+-->
+<script type="text/javascript" th:src="@{/js/register.js}"></script>
 <title>社員情報登録画面</title>
 </head>
 <body>
@@ -14,77 +22,144 @@
   <h2 th:text="${screen_name}"></h2>
 
   <h2>基本情報</h2>
-  <form method="post" th:action="@{insert}" th:object="${insertFormParam}">
+  <form method="post" th:action="@{insert}" th:object="${insertForm}">
     <div>
       <label for="value1">ID：</label>
       <p th:text="${register_id}"></p>
     </div>
     <div>
-      <label for="value2">社員名：<input type="text" th:field="*{formDataList[0].name}">
+      <label for="value2">社員名：<input type="text" th:field="*{name}">
       </label>
     </div>
     <div>
-      <label for="value3">性別：<input type="radio" th:field="*{formDataList[0].sex}" value="M" checked>男性 <input type="radio"
-        th:field="*{formDataList[0].sex}" value="F">女性
+    <!--
+        粕谷コメント
+        マスタDBから取得したコードの一覧をth:eachでループして入力要素(radioの選択値)を
+        動的に作成するようにしてください
+     -->
+      <label for="value3">性別：
+        <input type="radio" th:field="*{sex}" value="M" checked>男性
+        <input type="radio" th:field="*{sex}" value="F">女性
       </label>
     </div>
     <div>
-      <label for="value4">生年月日：<input type="date" th:field="*{formDataList[0].birthday}" max="9999-12-31">
+      <label for="value4">生年月日：<input type="date" th:field="*{birthday}" max="9999-12-31">
       </label>
     </div>
     <div>
-      <label for="value5">郵便番号：<input type="text" id="postcode" th:field="*{formDataList[0].zip}" placeholder="999-9999">
+      <label for="value5">郵便番号：<input type="text" id="postcode" th:field="*{zip}" placeholder="999-9999">
       </label>
       <button type='button' id="btn">検索</button>
     </div>
     <div id="result">
-      <label for="value6">住所1：<input type="text" id="address1" th:field="*{formDataList[0].adress1}">
+      <label for="value6">住所1：<input type="text" id="address1" th:field="*{adress1}">
       </label>
     </div>
     <div>
-      <label for="value7">住所2：<input type="text" th:field="*{formDataList[0].adress2}">
+      <label for="value7">住所2：<input type="text" th:field="*{adress2}">
       </label>
     </div>
     <div>
-      <label for="value8">入社年月：<input type="text" th:field="*{formDataList[0].nyushaym}"></input>
+      <label for="value8">入社年月：<input type="text" th:field="*{nyushaym}"></input>
       </label>
     </div>
     <div>
+    <!--
+        粕谷コメント
+        マスタDBから取得したコードの一覧をth:eachでループして入力要素(selectの中身)を
+        動的に作成するようにしてください
+     -->
       <label for="value9">所属部署：<select>
-          <option th:field="*{formDataList[0].division}" value="1">ITサービス部</option>
-          <option th:field="*{formDataList[0].division}" value="2">IST部</option>
-          <option th:field="*{formDataList[0].division}" value="3">ITソリューション部</option>
+        <option th:field="*{division}" value="1">ITサービス部</option>
+        <option th:field="*{division}" value="2">IST部</option>
+        <option th:field="*{division}" value="3">ITソリューション部</option>
       </select></label>
     </div>
     <div>
-      <label for="value10">趣味： <input type="checkbox" th:field="*{formDataList[0].hobby}" value="1">映画鑑賞 <input type="checkbox"
-        th:field="*{formDataList[0].hobby}" value="2">音楽鑑賞 <input type="checkbox" th:field="*{formDataList[0].hobby}" value="3">スポーツ <input
-        type="checkbox" th:field="*{formDataList[0].hobby}" value="4">ゲーム <input type="checkbox" th:field="*{formDataList[0].hobby}" value="5">釣り
-        <input type="checkbox" th:field="*{formDataList[0].hobby}" value="6">ドライブ <input type="checkbox" th:field="*{formDataList[0].hobby}"
-        value="7">読書 <input type="checkbox" th:field="*{formDataList[0].hobby}" value="8">仕事 <input type="checkbox"
-        th:field="*{formDataList[0].hobby}" value="9">その他
+    <!--
+        粕谷コメント
+        マスタDBから取得したコードの一覧をth:eachでループして入力要素(チェックボックスの中身)を
+        動的に作成するようにしてください
+        HTMLタグの改行にも注意！
+     -->
+      <label for="value10">趣味：
+        <input class="hobbyChk" type="checkbox" th:field="*{hobby}" value="1">映画鑑賞
+        <input class="hobbyChk" type="checkbox" th:field="*{hobby}" value="2">音楽鑑賞
+        <input class="hobbyChk" type="checkbox" th:field="*{hobby}" value="3">スポーツ
+        <input class="hobbyChk" type="checkbox" th:field="*{hobby}" value="4">ゲーム
+        <input class="hobbyChk" type="checkbox" th:field="*{hobby}" value="5">釣り
+        <input class="hobbyChk" type="checkbox" th:field="*{hobby}" value="6">ドライブ
+        <input class="hobbyChk" type="checkbox" th:field="*{hobby}" value="7">読書
+        <input class="hobbyChk" type="checkbox" th:field="*{hobby}" value="8">仕事
+        <input class="hobbyChk" type="checkbox" th:field="*{hobby}" value="9">その他
       </label>
     </div>
     <div>
-      <label for="value11">自己紹介：<textarea th:field="*{formDataList[0].self_intro}" rows="3" cols="60">自己紹介文を入力してください。</textarea></label>
+      <label for="value11">自己紹介：<textarea th:field="*{self_intro}" rows="3" cols="60">自己紹介文を入力してください。</textarea></label>
     </div>
+
     <label for="value12">職歴情報</label> <input type="button" value="追加" onclick="coladd()">
     <table id="tablevalue12">
-      <tr>
-        <td>開始期間</td>
-        <td>終了期間</td>
-        <td>案件名</td>
-        <td>編集</td>
-      </tr>
-      <tr th:each="formData, st : *{formDataList}">
-        <td><input type="date" th:name="${st.count}" th:field="*{formDataList[__${st.index}__].start_date}"></td>
-        <td><input type="date" th:name="${st.count}" th:field="*{formDataList[__${st.index}__].end_date}"></td>
-        <td><input type="text" th:name="${st.count}" th:field="*{formDataList[__${st.index}__].proposition}"></td>
-        <td><input type="button" value=削除 id="coldel_btn" onclick="coldel(this)"></td>
-      </tr>
+      <thead>
+        <tr>
+          <td>開始期間</td>
+          <td>終了期間</td>
+          <td>案件名</td>
+          <td>編集</td>
+        </tr>
+      </thead>
+      <!--
+      粕谷コメント
+      このパーツは編集か登録かで表示を分けています
+      登録時はth:eachで値を展開する必要がありますが
+      初期表示時は決め打ちで一行の登録欄が表示できれば良いためです。
+      -->
+      <!-- 編集時、とりあえず今は無視してOK -->
+      <!--
+      <tbody th:if="編集画面だったら、あるいはループする職歴情報の長さが0以上だったらという判定を書く">
+        ↓FormData自体をループするのではなく、編集時は職歴情報を配列に詰めてFromDataに格納して画面に渡す
+        　その配列をtheachでループする形になります。
+        <tr th:each="formData, st : *{formDataList}">
+        <tr th:each="carrerObj, stat : formData.職歴情報配列 ">
+          ↓ループする配列の形式に合わせてth:field等を利用して値を展開する
+          <td class="career_input">
+            <input type="date" th:name="${st.count}" th:field="*{careerStartDate}">
+          </td>
+          <td class="career_input">
+            <input type="date" th:name="${st.count}" th:field="*{carreerEndDate}">
+          </td>
+          <td class="career_input">
+            <input type="text" th:name="${st.count}" th:field="*{carreerProposition}">
+          </td>
+          <td class="career_input">
+            <input type="button" value=削除 id="coldel_btn" onclick="coldel(this)">
+          </td>
+        </tr>
+      </tbody>
+      -->
+
+      <!-- 追加時、決め打ちで空の一行を用意する-->
+      <!-- <tbody th:unless="上のth:ifと同じ条件、th:unlessで反転条件となるのでそのまま記載する"> -->
+      <tbody>
+        <tr class="career_row">
+          <td class="career_input">
+            <input type="date" th:name="careerStartDate">
+          </td>
+          <td class="career_input">
+            <input type="date" th:name="carreerEndDate">
+          </td>
+          <td class="career_input">
+            <input type="text" th:name="carreerProposition">
+          </td>
+          <td class="career_input">
+            <button class="career_row_delete" id="coldel_btn" onclick="coldel(this)">削除</button>
+          </td>
+        </tr>
+      </tbody>
     </table>
+
     <button type="submit">登録</button>
-    <button type="submit">登録</button>
+    <!-- <button type="submit">登録</button> -->
   </form>
 
 </body>

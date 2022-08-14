@@ -1,7 +1,5 @@
 package com.app_kensyu.entity;
 
-import java.sql.Date;
-
 import lombok.Data;
 
 @Data
@@ -16,8 +14,13 @@ public class TemployeeEntity {
     //性別
     private String sex;
 
+    /*
+     * 粕谷コメント
+     * Formの時もそうでしたが、日付型の指定はMySQLに格納する形として妥当ではないので
+     * String型に変更します
+     */
     //生年月日
-    private Date birthday;
+    private String birthday;
 
     //郵便番号
     private String zip;
