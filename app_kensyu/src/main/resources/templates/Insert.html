@@ -3,10 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
-<script type="text/javascript" th:src="@{/js/kensyu.js}"></script>
 <title>社員情報登録完了画面</title>
 </head>
 <body>
-
+  <h1 id="app-name">（研修用）社員管理システム</h1>
+  <h2>社員情報完了画面(EMPM05)</h2>
+  <div class="txt_center">
+    <p>社員情報を登録しました。</p>
+    <a th:href="@{/top}">メニュー</a> <a th:href="@{/EmployeeList}">社員情報一覧</a>
+  </div>
 </body>
 </html>

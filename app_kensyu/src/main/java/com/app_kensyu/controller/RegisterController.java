@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.app_kensyu.form.InsertFormParam;
+import com.app_kensyu.form.InsertForm;
 
 @RequestMapping("/*")
 @Controller
@@ -22,7 +22,7 @@ public class RegisterController {
         model.addAttribute("screen_name", "社員情報登録画面 (SEMPM02)");
         model.addAttribute("register_id", "※システムで自動採番されます");
 
-        model.addAttribute("insertFormParam", new InsertFormParam());
+        model.addAttribute("insertForm", new InsertForm());
 
         return "Register";
     }

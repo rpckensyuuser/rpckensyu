@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app_kensyu.dao.SelectDao">
+    <select id="selectTemployeeTbl" resultType="com.app_kensyu.entity.EmployeeListEntity">
+        SELECT ID, NAME, SEX, BIRTHDAY, NYUSHAYM, DIVISION, SELF_INTRO FROM TEMPLOYEE_TBL
+    </select>
+</mapper>

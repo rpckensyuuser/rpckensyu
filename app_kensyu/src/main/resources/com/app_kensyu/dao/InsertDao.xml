@@ -10,7 +10,7 @@
 
     <insert id="insertTcarerrTbl" parameterType="com.app_kensyu.entity.TcareerEntity">
         <selectKey keyProperty="seq" resultType="long" order="BEFORE">
-            SELECT COUNT(*)+1 FROM TCAREER_TBL;
+    SELECT COUNT(*)+1 FROM TCAREER_TBL WHERE ID=#{id};
         </selectKey>
         insert into TCAREER_TBL
         (ID,SEQ,START_DATE,END_DATE,PROPOSITION)
