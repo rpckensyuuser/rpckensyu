@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.app_kensyu.entity.EmployeeListEntity;
+import com.app_kensyu.entity.TemployeeEntity;
 import com.app_kensyu.service.SelectService;
 
 @Controller
@@ -26,8 +26,8 @@ public class EmployeeListController {
     @GetMapping("EmployeeList")
     public String EmployeeList(Model model) {
 
-        List<EmployeeListEntity> userlist = selectService.selectAll();
-        model.addAttribute("userlist", userlist);
+        List<TemployeeEntity> EmployeeList = selectService.AllTemployee();
+        model.addAttribute("employeeList", EmployeeList);
 
         return "EmployeeList";
     }

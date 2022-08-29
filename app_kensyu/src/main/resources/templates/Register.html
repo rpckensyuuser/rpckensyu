@@ -12,7 +12,11 @@
   <h1 id="app-name">（研修用）社員管理システム</h1>
   <h2 th:text="${screen_name}"></h2>
   <h2 class="txt_center">基本情報</h2>
-  <font color="red" th:text="${error_msg}"></font>
+  <table>
+    <tr th:if="${validationError}" th:each="error : ${validationError}">
+      <td style="color: red;" th:text="${error}"></td>
+    </tr>
+  </table>
   <form method="post" th:action="@{insert}" th:object="${insertForm}">
     <table class="center">
       <tr>
@@ -35,7 +39,7 @@
       </tr>
       <tr>
         <td><label for="value5">郵便番号</label></td>
-        <td><input type="text" id="postcode" th:field="*{zip}" placeholder="999-9999">
+        <td><input type="text" id="postcode" th:field="*{zip}" placeholder="9999999">
           <button type='button' id="btn">検索</button></td>
       </tr>
       <tr id="result">
@@ -80,12 +84,22 @@
         <td>案件名</td>
         <td>編集</td>
       </tr>
-      <tr th:each="TcareerData, st : *{TcareerList}">
-        <td><input type="date" th:name="${st.count}" th:field="*{TcareerList[__${st.index}__].start_date}"></td>
-        <td><input type="date" th:name="${st.count}" th:field="*{TcareerList[__${st.index}__].end_date}"></td>
-        <td><input type="text" th:name="${st.count}" th:field="*{TcareerList[__${st.index}__].proposition}"></td>
-        <td><input type="button" value=削除 id="coldel_btn" onclick="coldel(this)"></td>
-      </tr>
+      <th:block th:if="${screen_name == '社員情報登録画面 (SEMPM02)'}">
+        <tr>
+          <td><input type="date" th:field="*{TcareerList[0].start_date}"></td>
+          <td><input type="date" th:field="*{TcareerList[0].end_date}"></td>
+          <td><input type="text" th:field="*{TcareerList[0].proposition}"></td>
+          <td><input type="button" value=削除 id="coldel_btn" onclick="coldel(this)"></td>
+        </tr>
+      </th:block>
+      <th:block th:if="${screen_name == '社員情報訂正画面 (SEMPM02)'}">
+        <tr th:each="TcareerData, st : *{TcareerList}">
+          <td><input type="date" th:name="${st.count}" th:field="*{TcareerList[__${st.index}__].start_date}"></td>
+          <td><input type="date" th:name="${st.count}" th:field="*{TcareerList[__${st.index}__].end_date}"></td>
+          <td><input type="text" th:name="${st.count}" th:field="*{TcareerList[__${st.index}__].proposition}"></td>
+          <td><input type="button" value=削除 id="coldel_btn" onclick="coldel(this)"></td>
+        </tr>
+      </th:block>
     </table>
     <br>
     <div class="txt_center">
