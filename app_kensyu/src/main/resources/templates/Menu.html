@@ -9,11 +9,11 @@
   <h1 id="app-name">（研修用）社員管理システム</h1>
   <h2>メニュー画面（EMPM01）</h2>
 
-  <div class="menu-link">
-    <a th:href="@{/Register}">社員情報登録</a>
-  </div>
-  <div class="menu-link">
-    <a th:href="@{/EmployeeList}">社員情報一覧</a>
-  </div>
+  <form class="txt_center" th:action="@{Register}">
+    <button type="submit" class="form_btm">社員情報登録</button>
+  </form>
+  <form class="txt_center" th:action="@{EmployeeList}">
+    <button type="submit" class="form_btm">社員情報一覧</button>
+  </form>
 </body>
 </html>

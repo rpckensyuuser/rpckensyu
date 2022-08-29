@@ -1,7 +1,5 @@
 package com.app_kensyu.entity;
 
-import java.sql.Date;
-
 import lombok.Data;
 
 @Data
@@ -17,7 +15,7 @@ public class TemployeeEntity {
     private String sex;
 
     //生年月日
-    private Date birthday;
+    private String birthday;
 
     //郵便番号
     private String zip;

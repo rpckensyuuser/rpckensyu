@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app_kensyu.dao.InsertDao;
+import com.app_kensyu.dto.TcareerDTO;
 import com.app_kensyu.entity.TcareerEntity;
 import com.app_kensyu.entity.TemployeeEntity;
 import com.app_kensyu.form.InsertForm;
-import com.app_kensyu.form.InsertFormParam;
 import com.app_kensyu.service.InsertService;
 
 @Service
@@ -19,45 +19,44 @@ public class InsertServiceImpl implements InsertService {
     TemployeeEntity temployeeEntity = new TemployeeEntity();
 
     @Override
-    public void insertTemployee(InsertFormParam insertFormParam) {
+    public void insertTemployee(InsertForm insertForm) {
 
-        for (InsertForm data : insertFormParam.getFormDataList()) {
-            temployeeEntity.setName(data.getName());
-            temployeeEntity.setSex(data.getSex());
-            temployeeEntity.setBirthday(data.getBirthday());
-            temployeeEntity.setZip(data.getZip());
-            temployeeEntity.setAdress1(data.getAdress1());
-            temployeeEntity.setAdress2(data.getAdress2());
-            temployeeEntity.setNyushaym(data.getNyushaym());
-            temployeeEntity.setDivision(data.getDivision());
-            for (String hobby : data.getHobby()) {
-                temployeeEntity.setHobby1(hobby);
+        temployeeEntity.setName(insertForm.getName());
+        temployeeEntity.setSex(insertForm.getSex());
+        temployeeEntity.setBirthday(insertForm.getBirthday());
+        temployeeEntity.setZip(insertForm.getZip());
+        temployeeEntity.setAdress1(insertForm.getAdress1());
+        temployeeEntity.setAdress2(insertForm.getAdress2());
+        temployeeEntity.setNyushaym(insertForm.getNyushaym());
+        temployeeEntity.setDivision(insertForm.getDivision());
+        for (int i = 0; i < insertForm.getHobby().length; i++) {
+            if (i == 0) {
+                temployeeEntity.setHobby1(insertForm.getHobby()[i]);
+            } else if (i == 1) {
+                temployeeEntity.setHobby2(insertForm.getHobby()[i]);
+            } else if (i == 2) {
+                temployeeEntity.setHobby3(insertForm.getHobby()[i]);
             }
-            temployeeEntity.setSelf_intro(data.getSelf_intro());
         }
+        temployeeEntity.setSelf_intro(insertForm.getSelf_intro());
 
         insertDao.insertTemployeeTbl(temployeeEntity);
     }
 
     @Override
-    public void insertTcarerr(InsertFormParam insertFormParam) {
+    public void insertTcarerr(InsertForm insertForm) {
 
         TcareerEntity tcareerEntity = new TcareerEntity();
 
-        for (InsertForm data : insertFormParam.getFormDataList()) {
+        if (insertForm.getTcareerList().size() > 0) {
+            for (TcareerDTO Tcareer : insertForm.getTcareerList()) {
+                tcareerEntity.setId(temployeeEntity.getId());
+                tcareerEntity.setStart_date(Tcareer.getStart_date());
+                tcareerEntity.setEnd_date(Tcareer.getEnd_date());
+                tcareerEntity.setProposition(Tcareer.getProposition());
 
-            int n = 0;
-
-            tcareerEntity.setId(temployeeEntity.getId());
-            //tcareerEntity.setSeq();
-            tcareerEntity.setStart_date(data.getStart_date()[n]);
-            tcareerEntity.setEnd_date(data.getEnd_date()[n]);
-            tcareerEntity.setProposition(data.getProposition()[n]);
-
-            n += 1;
-
-            insertDao.insertTcarerrTbl(tcareerEntity);
+                insertDao.insertTcarerrTbl(tcareerEntity);
+            }
         }
     }
-
 }

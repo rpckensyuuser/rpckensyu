@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+<title>社員情報明細画面</title>
+</head>
+<body>
+  <table>
+    <tr>
+      <td><label for="value1">ID</label></td>
+      <td><p th:text="${temployee.id}"></p></td>
+    </tr>
+    <tr>
+      <td><label for="value2">社員名</label></td>
+      <td><p th:text="${temployee.name}"></p></td>
+    </tr>
+    <tr>
+      <td><label for="value3">性別</label></td>
+      <td><p th:text="${temployee.sex}"></p></td>
+    </tr>
+    <tr>
+      <td><label for="value4">生年月日</label></td>
+      <td><p th:text="${temployee.birthday}"></p></td>
+    </tr>
+    <tr>
+      <td><label for="value5">郵便番号</label></td>
+      <td><p th:text="${temployee.zip}"></p></td>
+    </tr>
+    <tr>
+      <td><label for="value6">住所1</label></td>
+      <td><p th:text="${temployee.adress1}"></p></td>
+    </tr>
+    <tr>
+      <td><label for="value7">住所2</label></td>
+      <td><p th:text="${temployee.adress2}"></p></td>
+    </tr>
+    <tr>
+      <td><label for="value8">入社年月</label></td>
+      <td><p th:text="${temployee.nyushaym}"></p></td>
+    </tr>
+    <tr>
+      <td><label for="value9">所属部署</label></td>
+      <td><p th:text="${temployee.division}"></p></td>
+    </tr>
+    <tr>
+      <td><label for="value10">趣味1</label></td>
+      <td><p th:text="${temployee.hobby1}"></p></td>
+    </tr>
+    <tr>
+      <td><label for="value11">趣味2</label></td>
+      <td><p th:text="${temployee.hobby2}"></p></td>
+    </tr>
+    <tr>
+      <td><label for="value12">趣味3</label></td>
+      <td><p th:text="${temployee.hobby3}"></p></td>
+    </tr>
+    <tr>
+      <td><label for="value13">自己紹介</label></td>
+      <td><p th:text="${temployee.self_intro}"></p></td>
+    </tr>
+    <tr th:each="tcareer : ${tcareerList}" th:object="${TcareerEntity}">
+      <td th:text="${tcareer.start_date}"></td>
+      <td th:text="${tcareer.end_date}"></td>
+      <td th:text="${tcareer.proposition}"></td>
+    </tr>
+  </table>
+</body>
+</html>
