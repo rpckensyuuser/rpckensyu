@@ -24,5 +24,65 @@ body {
 	padding: 20px 0;
 	background-color: rgb(33, 33, 33);
 	text-align: center;
-	color: #eaeaea;
+	color: #feffff;
+}
+
+.design03 {
+	width: 100%;
+	text-align: center;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-top: solid 1px #000000;
+}
+
+.design03 tr:nth-child(2n+1) {
+	background: #eaeaea;
+}
+
+.design03 th, .design03 td {
+	padding: 5px;
+	border-bottom: solid 1px #000000;
+}
+
+.temployeeDetail {
+	border-collapse: collapse;
+	margin: 0 auto;
+}
+
+table.temployeeDetail td, th {
+	border-top: 1px solid #666;
+	padding: 10px;
+}
+
+table.temployeeDetail tr:last-child td, table.temployeeDetail tr:last-child th {
+	border-bottom: 1px solid #666;
+}
+
+.tcareer {
+	margin: auto;
+	background-color: rgb(33, 33, 33);
+	text-align: center;
+	padding: 20px 0;
+	width: 50%;
+	height: 20px;
+	color: #feffff;
+	text-align: center;
+}
+
+table.tcareerDetail {
+	text-align: center;
+	margin: auto;
+	border-collapse: collapse;
+}
+
+table.tcareerDetail th {
+	border: 1px solid #000066;
+	background: royalblue;
+	padding: 4px 8px;
+}
+
+table.tcareerDetail td {
+	border: 1px solid #000066;
+	background: #ffffff;
+	padding: 4px 8px;
 }

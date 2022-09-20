@@ -21,10 +21,10 @@ public class TemployeeEntity {
     private String zip;
 
     //住所１
-    private String adress1;
+    private String address1;
 
     //住所２
-    private String adress2;
+    private String address2;
 
     //入社年月
     private String nyushaym;
@@ -42,6 +42,6 @@ public class TemployeeEntity {
     private String hobby3;
 
     //自己紹介
-    private String self_intro;
+    private String selfIntro;
 
 }

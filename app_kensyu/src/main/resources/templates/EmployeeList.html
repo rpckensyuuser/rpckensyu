@@ -7,18 +7,21 @@
 </head>
 <body>
   <h1 id="app-name">（研修用）社員管理システム</h1>
-  <h2 th:text="${screen_name}"></h2>
-  <!--   <form method="post" th:action="@{search}" th:object="${EmployeeListForm}"> -->
-  <!--     <label>検索機能 <input type="text" th:field="*{name}"> <select> -->
-  <!--         <option th:field="*{division}" value="0">未選択</option> -->
-  <!--         <option th:field="*{division}" value="1">ITサービス部</option> -->
-  <!--         <option th:field="*{division}" value="2">IST部</option> -->
-  <!--         <option th:field="*{division}" value="3">ITソリューション部</option> -->
-  <!--     </select> <input type="text" th:text="${freeWord}"> -->
-  <!--     </label> -->
-  <!--     <button type="submit">検索</button> -->
-  <!--   </form> -->
-  <table>
+  <h2>社員情報一覧画面(EMPM03)</h2>
+  <div class="center">
+    <form method="post" th:action="@{EmployeeList}" th:object="${employeeListForm}">
+      <label>検索機能 <input type="text" th:field="*{name}" placeholder="氏名"> <select th:field="*{division}">
+          <option value="">未選択</option>
+          <option value="1">ITサービス部</option>
+          <option value="2">IST部</option>
+          <option value="3">ITソリューション部</option>
+      </select> <input type="text" th:field="*{freeWord}" placeholder="フリーワード">
+      </label>
+      <button type="submit">検索</button>
+    </form>
+  </div>
+  <br>
+  <table class="design03">
     <tr>
       <td>ID</td>
       <td>社員名</td>
@@ -29,7 +32,7 @@
       <td>自己紹介</td>
       <td>編集</td>
     </tr>
-    <tr th:each="employee : ${employeeList}" th:object="${EmployeeListEntity}">
+    <tr th:each="employee : ${temployeeList}" th:object="${EmployeeListEntity}">
       <td th:text="${employee.id}"></td>
       <td><a th:href="@{'/EmployeeDetail?id=' + ${employee.id}}" th:text="${employee.name}"></a></td>
       <td><th:block th:switch="${employee.sex}">
@@ -43,17 +46,13 @@
           <p th:case="2" th:text="IST部"></p>
           <p th:case="3" th:text="ITソリューション部"></p>
         </th:block></td>
-      <td th:text="${employee.self_intro}"></td>
-      <td>
-        <form method="post" th:action="@{top}">
-          <button type="submit">訂正</button>
-        </form>
-        <form method="post" th:action="@{top}">
-          <button type="submit">削除</button>
-        </form>
-      </td>
-      <!--       <td><button type='button' th:href="@{/EmployeeListForm/{id}(id=*{id})}">訂正</button> -->
-      <!--         <button type='button'>削除</button></td> -->
+      <td th:text="${employee.selfIntro}"></td>
+      <td><a th:href="@{'/register2?id=' + ${employee.id}}">編集</a> <a th:href="@{'/delete?id=' + ${employee.id}}">削除</a></td>
+    </tr>
   </table>
+  <br>
+  <form method="get" th:action="@{top}">
+    <button type="submit">戻る</button>
+  </form>
 </body>
 </html>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app_kensyu.dao.DeleteDao">
+    <delete id="deleteTemployeeTbl">
+        delete from TEMPLOYEE_TBL where id = #{id}
+    </delete>
+    <delete id="deleteTcarerrTbl">
+        delete from TCAREER_TBL where id = #{id}
+    </delete>
+</mapper>

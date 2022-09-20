@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * メニュー画面のコントローラー
  */
-
-@RequestMapping("/*")
 @Controller
+@RequestMapping("/*")
 public class MenuController {
 
     /**

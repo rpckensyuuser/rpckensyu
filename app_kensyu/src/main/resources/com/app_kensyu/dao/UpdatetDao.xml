@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app_kensyu.dao.UpdatetDao">
+
+    <update id="updatetTemployeeTbl" parameterType="com.app_kensyu.entity.TemployeeEntity">
+        update TEMPLOYEE_TBL
+        <set>
+            <if test="name != null and name != ''">NAME=#{name},</if>
+            <if test="sex != null and sex != ''">SEX=#{sex},</if>
+            <if test="birthday != null and birthday != ''">BIRTHDAY=#{birthday},</if>
+            <if test="zip != null and zip != ''">ZIP=#{zip},</if>
+            <if test="address1 != null and address1 != ''">ADDRESS1=#{address1},</if>
+            <if test="address2 != null and address2 != ''">ADDRESS2=#{address2},</if>
+            <if test="nyushaym != null and nyushaym != ''">NYUSHAYM=#{nyushaym},</if>
+            <if test="division != null and division != ''">DIVISION=#{division},</if>
+            <if test="hobby1 != null and hobby1 != ''">HOBBY1=#{hobby1},</if>
+            <if test="hobby2 != null and hobby2 != ''">HOBBY2=#{hobby2},</if>
+            <if test="hobby3 != null and hobby3 != ''">HOBBY3=#{hobby3},</if>
+            <if test="selfIntro != null and selfIntro != ''">SELF_INTRO=#{selfIntro}</if>
+        </set>
+        where ID=#{id}
+    </update>
+
+    <update id="updatetTcarerrTbl" parameterType="com.app_kensyu.entity.TcareerEntity">
+        <selectKey keyProperty="seq" resultType="long" order="BEFORE">
+            SELECT SEQ FROM TCAREER_TBL WHERE ID=#{id};
+        </selectKey>
+        update TCAREER_TBL
+        <set>
+            <if test="startDate != null and startDate != ''">START_DATE=#{startDate},</if>
+            <if test="endDate != null and endDate != ''">END_DATE=#{endDate},</if>
+            <if test="proposition != null and proposition != ''">PROPOSITION=#{proposition}</if>
+        </set>
+        where ID=#{id} AND SEQ=#{seq}
+    </update>
+
+</mapper>

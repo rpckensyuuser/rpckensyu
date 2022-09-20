@@ -40,11 +40,11 @@ public class InsertForm {
 
     //住所１
     @Length(max = 100, message = "住所１は100文字以内で入力してください")
-    private String adress1;
+    private String address1;
 
     //住所２
     @Length(max = 100, message = "住所２は100文字以内で入力してください")
-    private String adress2;
+    private String address2;
 
     //入社年月
     @Pattern(regexp = "\\d{6}", message = "入社年月を[YYYYMM]形式で入力してください")
@@ -59,11 +59,11 @@ public class InsertForm {
 
     //自己紹介
     @Length(max = 200, message = "自己紹介は200文字以内で入力してください")
-    private String self_intro;
+    private String selfIntro;
 
     //職歴情報リスト
     @NotEmpty
     @Valid
-    private List<TcareerDTO> TcareerList;
+    private List<TcareerDTO> tcareerList;
 
 }
