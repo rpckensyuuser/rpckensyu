@@ -6,7 +6,10 @@
 <title>社員情報明細画面</title>
 </head>
 <body>
-  <table>
+  <h1 id="app-name">（研修用）社員管理システム</h1>
+  <h2>社員情報明細画面(EMPM04)</h2>
+  <h2 class="txt_center">基本情報</h2>
+  <table class="temployeeDetail">
     <tr>
       <td><label for="value1">ID</label></td>
       <td><p th:text="${temployee.id}"></p></td>
@@ -17,7 +20,10 @@
     </tr>
     <tr>
       <td><label for="value3">性別</label></td>
-      <td><p th:text="${temployee.sex}"></p></td>
+      <td><th:block th:switch="${temployee.sex}">
+          <p th:case="M" th:text="男"></p>
+          <p th:case="F" th:text="女"></p>
+        </th:block></td>
     </tr>
     <tr>
       <td><label for="value4">生年月日</label></td>
@@ -29,11 +35,11 @@
     </tr>
     <tr>
       <td><label for="value6">住所1</label></td>
-      <td><p th:text="${temployee.adress1}"></p></td>
+      <td><p th:text="${temployee.address1}"></p></td>
     </tr>
     <tr>
       <td><label for="value7">住所2</label></td>
-      <td><p th:text="${temployee.adress2}"></p></td>
+      <td><p th:text="${temployee.address2}"></p></td>
     </tr>
     <tr>
       <td><label for="value8">入社年月</label></td>
@@ -41,29 +47,89 @@
     </tr>
     <tr>
       <td><label for="value9">所属部署</label></td>
-      <td><p th:text="${temployee.division}"></p></td>
+      <td><th:block th:switch="${temployee.division}">
+          <p th:case="1" th:text="ITサービス部"></p>
+          <p th:case="2" th:text="IST部"></p>
+          <p th:case="3" th:text="ITソリューション部"></p>
+        </th:block></td>
     </tr>
     <tr>
       <td><label for="value10">趣味1</label></td>
-      <td><p th:text="${temployee.hobby1}"></p></td>
+      <td><th:block th:switch="${temployee.hobby1}">
+          <p th:case="1" th:text="映画鑑賞"></p>
+          <p th:case="2" th:text="音楽鑑賞"></p>
+          <p th:case="3" th:text="スポーツ"></p>
+          <p th:case="4" th:text="ゲーム"></p>
+          <p th:case="5" th:text="釣り"></p>
+          <p th:case="6" th:text="ドライブ"></p>
+          <p th:case="7" th:text="読書"></p>
+          <p th:case="8" th:text="仕事"></p>
+          <p th:case="9" th:text="その他"></p>
+        </th:block></td>
     </tr>
     <tr>
       <td><label for="value11">趣味2</label></td>
-      <td><p th:text="${temployee.hobby2}"></p></td>
+      <td><th:block th:switch="${temployee.hobby2}">
+          <p th:case="1" th:text="映画鑑賞"></p>
+          <p th:case="2" th:text="音楽鑑賞"></p>
+          <p th:case="3" th:text="スポーツ"></p>
+          <p th:case="4" th:text="ゲーム"></p>
+          <p th:case="5" th:text="釣り"></p>
+          <p th:case="6" th:text="ドライブ"></p>
+          <p th:case="7" th:text="読書"></p>
+          <p th:case="8" th:text="仕事"></p>
+          <p th:case="9" th:text="その他"></p>
+        </th:block></td>
     </tr>
     <tr>
       <td><label for="value12">趣味3</label></td>
-      <td><p th:text="${temployee.hobby3}"></p></td>
+      <td><th:block th:switch="${temployee.hobby3}">
+          <p th:case="1" th:text="映画鑑賞"></p>
+          <p th:case="2" th:text="音楽鑑賞"></p>
+          <p th:case="3" th:text="スポーツ"></p>
+          <p th:case="4" th:text="ゲーム"></p>
+          <p th:case="5" th:text="釣り"></p>
+          <p th:case="6" th:text="ドライブ"></p>
+          <p th:case="7" th:text="読書"></p>
+          <p th:case="8" th:text="仕事"></p>
+          <p th:case="9" th:text="その他"></p>
+        </th:block></td>
     </tr>
     <tr>
       <td><label for="value13">自己紹介</label></td>
-      <td><p th:text="${temployee.self_intro}"></p></td>
+      <td><p th:text="${temployee.selfIntro}"></p></td>
+    </tr>
+  </table>
+  <br>
+  <div class="tcareer">
+    <label>職歴情報</label>
+  </div>
+  <br>
+  <table class="tcareerDetail">
+    <tr>
+      <td>No</td>
+      <td>開始期間</td>
+      <td>終了期間</td>
+      <td>案件名</td>
     </tr>
     <tr th:each="tcareer : ${tcareerList}" th:object="${TcareerEntity}">
-      <td th:text="${tcareer.start_date}"></td>
-      <td th:text="${tcareer.end_date}"></td>
+      <td th:text="${tcareer.seq}"></td>
+      <td th:text="${tcareer.startDate}"></td>
+      <td th:text="${tcareer.endDate}"></td>
       <td th:text="${tcareer.proposition}"></td>
     </tr>
   </table>
+  <br>
+  <div align="center">
+    <form method="get" th:action="@{top}">
+      <button type="submit" class="form_btm">トップ</button>
+    </form>
+    <form method="post" th:action="@{'/register2?id=' + ${temployee.id}}">
+      <button type='submit' class="form_btm">社員情報訂正</button>
+    </form>
+    <form method="get" th:action="@{EmployeeList}">
+      <button type='submit' class="form_btm">社員情報一覧</button>
+    </form>
+  </div>
 </body>
 </html>

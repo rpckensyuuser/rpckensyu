@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.app_kensyu.dao.SelectDao;
 import com.app_kensyu.entity.TcareerEntity;
 import com.app_kensyu.entity.TemployeeEntity;
+import com.app_kensyu.form.EmployeeListForm;
 import com.app_kensyu.service.SelectService;
 
 @Service
@@ -18,19 +19,24 @@ public class SelectServiceImpl implements SelectService {
 
     @Override
     public List<TemployeeEntity> AllTemployee() {
-
         return selectDao.AllTemployeeTbl();
     }
 
     @Override
+    public List<TemployeeEntity> SearchTemployee(EmployeeListForm employeeListForm) {
+
+        return selectDao.SearchTemployeeTbl(employeeListForm.getName(), employeeListForm.getDivision(),
+                employeeListForm.getFreeWord());
+    }
+
+    @Override
     public TemployeeEntity OneTemployee(long id) {
-        // TODO 自動生成されたメソッド・スタブ
         return selectDao.OneTemployeeTbl(id);
     }
 
     @Override
     public List<TcareerEntity> OneTcareer(long id) {
-        // TODO 自動生成されたメソッド・スタブ
         return selectDao.OneTcareerTbl(id);
     }
+
 }

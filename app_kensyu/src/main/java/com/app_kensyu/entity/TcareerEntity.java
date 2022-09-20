@@ -12,10 +12,10 @@ public class TcareerEntity {
     private long seq;
 
     //開始期間
-    private String start_date;
+    private String startDate;
 
     //終了期間
-    private String end_date;
+    private String endDate;
 
     //案件名
     private String proposition;

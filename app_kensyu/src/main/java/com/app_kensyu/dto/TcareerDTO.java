@@ -10,11 +10,11 @@ public class TcareerDTO {
 
     //開始期間
     @NotEmpty(message = "開始期間を選択してください")
-    private String start_date;
+    private String startDate;
 
     //終了期間
     @NotEmpty(message = "終了期間を選択してください")
-    private String end_date;
+    private String endDate;
 
     //案件名
     @NotBlank(message = "案件名を入力してください")

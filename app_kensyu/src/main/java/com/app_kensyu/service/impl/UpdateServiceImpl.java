@@ -3,23 +3,23 @@ package com.app_kensyu.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app_kensyu.dao.InsertDao;
+import com.app_kensyu.dao.UpdatetDao;
 import com.app_kensyu.dto.TcareerDTO;
 import com.app_kensyu.entity.TcareerEntity;
 import com.app_kensyu.entity.TemployeeEntity;
 import com.app_kensyu.form.InsertForm;
-import com.app_kensyu.service.InsertService;
+import com.app_kensyu.service.UpdateService;
 
 @Service
-public class InsertServiceImpl implements InsertService {
+public class UpdateServiceImpl implements UpdateService {
 
     @Autowired
-    private InsertDao insertDao;
+    private UpdatetDao updatetDao;
 
     TemployeeEntity temployeeEntity = new TemployeeEntity();
 
     @Override
-    public void insertTemployee(InsertForm insertForm) {
+    public void updateTemployee(InsertForm insertForm) {
 
         temployeeEntity.setName(insertForm.getName());
         temployeeEntity.setSex(insertForm.getSex());
@@ -40,11 +40,11 @@ public class InsertServiceImpl implements InsertService {
         }
         temployeeEntity.setSelfIntro(insertForm.getSelfIntro());
 
-        insertDao.insertTemployeeTbl(temployeeEntity);
+        updatetDao.updatetTemployeeTbl(temployeeEntity);
     }
 
     @Override
-    public void insertTcarerr(InsertForm insertForm) {
+    public void updateTcarerr(InsertForm insertForm) {
 
         TcareerEntity tcareerEntity = new TcareerEntity();
 
@@ -55,8 +55,9 @@ public class InsertServiceImpl implements InsertService {
                 tcareerEntity.setEndDate(Tcareer.getEndDate());
                 tcareerEntity.setProposition(Tcareer.getProposition());
 
-                insertDao.insertTcarerrTbl(tcareerEntity);
+                updatetDao.updatetTcarerrTbl(tcareerEntity);
             }
         }
     }
+
 }

@@ -36,9 +36,9 @@ function coladd() {
 		var index = tablevalue12.rows.length - 2;
 
 		// セルの内容入力
-		cell1.innerHTML = '<td><input type="date" name="TcareerList[' + index + '].start_date" id="TcareerList' + index + '.start_date" value=""></td>';
-		cell2.innerHTML = '<td><input type="date" name="TcareerList[' + index + '].end_date" id="TcareerList' + index + '.end_date" value=""></td>';
-		cell3.innerHTML = '<td><input type="text" name="TcareerList[' + index + '].proposition" id="TcareerList' + index + '.proposition" value=""></td>';
+		cell1.innerHTML = '<td><input type="date" name="tcareerList[' + index + '].startDate" id="tcareerList' + index + '.startDate" value=""></td>';
+		cell2.innerHTML = '<td><input type="date" name="tcareerList[' + index + '].endDate" id="tcareerList' + index + '.endDate" value=""></td>';
+		cell3.innerHTML = '<td><input type="text" name="tcareerList[' + index + '].proposition" id="tcareerList' + index + '.proposition" value=""></td>';
 		cell4.innerHTML = '<td><input type="button" value=削除 id="coldel_btn" onclick="coldel(this)"></td>	';
 	}
 }

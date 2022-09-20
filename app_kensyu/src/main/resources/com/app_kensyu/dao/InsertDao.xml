@@ -5,7 +5,7 @@
         insert into TEMPLOYEE_TBL
         (NAME,SEX,BIRTHDAY,ZIP,ADDRESS1,ADDRESS2,NYUSHAYM,DIVISION,HOBBY1,HOBBY2,HOBBY3,SELF_INTRO)
         values
-        (#{name},#{sex},#{birthday},#{zip},#{adress1},#{adress2},#{nyushaym},#{division},#{hobby1},#{hobby2},#{hobby3},#{self_intro})
+        (#{name},#{sex},#{birthday},#{zip},#{address1},#{address2},#{nyushaym},#{division},#{hobby1},#{hobby2},#{hobby3},#{selfIntro})
     </insert>
 
     <insert id="insertTcarerrTbl" parameterType="com.app_kensyu.entity.TcareerEntity">
@@ -15,6 +15,6 @@
         insert into TCAREER_TBL
         (ID,SEQ,START_DATE,END_DATE,PROPOSITION)
         values
-        (#{id},#{seq},#{start_date},#{end_date},#{proposition})
+        (#{id},#{seq},#{startDate},#{endDate},#{proposition})
     </insert>
 </mapper>
