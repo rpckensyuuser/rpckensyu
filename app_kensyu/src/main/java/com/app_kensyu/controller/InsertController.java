@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.app_kensyu.form.InsertForm;
 import com.app_kensyu.service.InsertService;
@@ -21,6 +22,7 @@ import com.app_kensyu.service.UpdateService;
  * 社員情報登録完了画面のコントローラー
  */
 @Controller
+@RequestMapping("/*")
 public class InsertController {
 
     @Autowired
