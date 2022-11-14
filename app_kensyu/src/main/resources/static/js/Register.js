@@ -14,10 +14,21 @@ $(function() {
 			alert('通信に失敗しました');
 		});
 	});
-
 	function getData(data) {
 		$('#address1').val(data.address1 + data.address2);
 	}
+});
+
+
+$("input[type=checkbox]").click(function(){
+    var $count = $("input[type=checkbox]:checked").length;
+    var $not = $('input[type=checkbox]').not(':checked')
+
+    if($count >= 3) {
+        $not.attr("disabled",true);
+    }else{
+        $not.attr("disabled",false);
+    }
 });
 
 

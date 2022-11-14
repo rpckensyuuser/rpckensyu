@@ -17,8 +17,8 @@ public class MenuController {
      * ＠param model 画面のモデル
      * @return メニュー画面
      */
-    @GetMapping("top")
-    public String top(Model model) {
+    @GetMapping("menu")
+    public String menu(Model model) {
         return "menu";
     }
 

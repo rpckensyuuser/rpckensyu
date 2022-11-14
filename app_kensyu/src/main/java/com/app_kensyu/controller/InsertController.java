@@ -1,7 +1,9 @@
 package com.app_kensyu.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -14,8 +16,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.app_kensyu.entity.McodeEntity;
 import com.app_kensyu.form.InsertForm;
 import com.app_kensyu.service.InsertService;
+import com.app_kensyu.service.SelectService;
 import com.app_kensyu.service.UpdateService;
 
 /**
@@ -24,6 +28,9 @@ import com.app_kensyu.service.UpdateService;
 @Controller
 @RequestMapping("/*")
 public class InsertController {
+
+    @Autowired
+    private SelectService selectService;
 
     @Autowired
     private InsertService insertService;
@@ -44,9 +51,31 @@ public class InsertController {
             for (ObjectError error : bindingResult.getAllErrors()) {
                 errorList.add(error.getDefaultMessage());
             }
-            model.addAttribute("screen_name", "社員情報登録画面 (SEMPM02)");
-            model.addAttribute("id", "※システムで自動採番されます");
+
+            // 画面に表示する情報（性別、所属部署、趣味）をDBから取得し、リストに代入。
+            List<McodeEntity> mcodeList = selectService.mcode();
+
+            // 性別、所属部署、趣味それぞれの情報を代入する変数
+            Map<String, String> sexMap = new HashMap<String, String>();
+            Map<String, String> divisionMap = new HashMap<String, String>();
+            Map<String, String> hobbyMap = new HashMap<String, String>();
+
+            for (McodeEntity mcode : mcodeList) {
+                if (mcode.getCLASSTYPE().equals("C0001")) {
+                    sexMap.put(mcode.getCODE(), mcode.getCODENAME());
+                } else if (mcode.getCLASSTYPE().equals("C0002")) {
+                    divisionMap.put(mcode.getCODE(), mcode.getCODENAME());
+                } else if (mcode.getCLASSTYPE().equals("C0003")) {
+                    hobbyMap.put(mcode.getCODE(), mcode.getCODENAME());
+                }
+            }
+
+            model.addAttribute("sexMap", sexMap);
+            model.addAttribute("divisionMap", divisionMap);
+            model.addAttribute("hobbyMap", hobbyMap);
+            model.addAttribute("tcareerList", insertForm.getTcareerList());
             model.addAttribute("validationError", errorList);
+
             return "Register";
         }
 

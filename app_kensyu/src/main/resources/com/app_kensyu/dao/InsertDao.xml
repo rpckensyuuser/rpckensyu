@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app_kensyu.dao.InsertDao">
     <insert id="insertTemployeeTbl" parameterType="com.app_kensyu.entity.TemployeeEntity" useGeneratedKeys="true" keyProperty="id">
-        insert into TEMPLOYEE_TBL
+        insert into rpcDB.TEMPLOYEE_TBL
         (NAME,SEX,BIRTHDAY,ZIP,ADDRESS1,ADDRESS2,NYUSHAYM,DIVISION,HOBBY1,HOBBY2,HOBBY3,SELF_INTRO)
         values
         (#{name},#{sex},#{birthday},#{zip},#{address1},#{address2},#{nyushaym},#{division},#{hobby1},#{hobby2},#{hobby3},#{selfIntro})
@@ -10,9 +10,9 @@
 
     <insert id="insertTcarerrTbl" parameterType="com.app_kensyu.entity.TcareerEntity">
         <selectKey keyProperty="seq" resultType="long" order="BEFORE">
-    SELECT COUNT(*)+1 FROM TCAREER_TBL WHERE ID=#{id};
+            SELECT COUNT(*)+1 FROM rpcDB.TCAREER_TBL WHERE ID=#{id};
         </selectKey>
-        insert into TCAREER_TBL
+        insert into rpcDB.TCAREER_TBL
         (ID,SEQ,START_DATE,END_DATE,PROPOSITION)
         values
         (#{id},#{seq},#{startDate},#{endDate},#{proposition})

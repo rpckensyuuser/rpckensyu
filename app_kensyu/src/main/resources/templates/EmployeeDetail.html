@@ -121,13 +121,13 @@
   </table>
   <br>
   <div align="center">
-    <form method="get" th:action="@{top}">
+    <form method="get" th:action="@{menu}">
       <button type="submit" class="form_btm">トップ</button>
     </form>
-    <form method="post" th:action="@{'/register2?id=' + ${temployee.id}}">
+    <form method="get" th:action="@{'/correction?id=' + ${temployee.id}}">
       <button type='submit' class="form_btm">社員情報訂正</button>
     </form>
-    <form method="get" th:action="@{EmployeeList}">
+    <form method="get" th:action="@{employeeList}">
       <button type='submit' class="form_btm">社員情報一覧</button>
     </form>
   </div>

@@ -9,7 +9,7 @@
   <h1 id="app-name">（研修用）社員管理システム</h1>
   <h2>社員情報一覧画面(EMPM03)</h2>
   <div class="center">
-    <form method="post" th:action="@{EmployeeList}" th:object="${employeeListForm}">
+    <form method="post" th:action="@{employeeList}" th:object="${employeeListForm}">
       <label>検索機能 <input type="text" th:field="*{name}" placeholder="氏名"> <select th:field="*{division}">
           <option value="">未選択</option>
           <option value="1">ITサービス部</option>
@@ -34,7 +34,7 @@
     </tr>
     <tr th:each="employee : ${temployeeList}" th:object="${EmployeeListEntity}">
       <td th:text="${employee.id}"></td>
-      <td><a th:href="@{'/EmployeeDetail?id=' + ${employee.id}}" th:text="${employee.name}"></a></td>
+      <td><a th:href="@{'/employeeDetail?id=' + ${employee.id}}" th:text="${employee.name}"></a></td>
       <td><th:block th:switch="${employee.sex}">
           <p th:case="M" th:text="男"></p>
           <p th:case="F" th:text="女"></p>
@@ -47,11 +47,11 @@
           <p th:case="3" th:text="ITソリューション部"></p>
         </th:block></td>
       <td th:text="${employee.selfIntro}"></td>
-      <td><a th:href="@{'/register2?id=' + ${employee.id}}">編集</a> <a th:href="@{'/delete?id=' + ${employee.id}}">削除</a></td>
+      <td><a th:href="@{'/correction?id=' + ${employee.id}}">編集</a> <a th:href="@{'/delete?id=' + ${employee.id}}">削除</a></td>
     </tr>
   </table>
   <br>
-  <form method="get" th:action="@{top}">
+  <form method="get" th:action="@{menu}">
     <button type="submit">戻る</button>
   </form>
 </body>

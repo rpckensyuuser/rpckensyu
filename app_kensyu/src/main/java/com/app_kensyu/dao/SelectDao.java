@@ -4,11 +4,15 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.app_kensyu.entity.McodeEntity;
 import com.app_kensyu.entity.TcareerEntity;
 import com.app_kensyu.entity.TemployeeEntity;
 
 @Mapper
 public interface SelectDao {
+
+    // MCODE_TBLの値を取得
+    List<McodeEntity> mcodeTbl();
 
     // 全ての社員情報テーブルの値を取得
     List<TemployeeEntity> AllTemployeeTbl();

@@ -26,7 +26,7 @@ public class EmployeeDetailController {
      * @param id 社員ID, model 画面のモデル
      * @return 社員情報明細画面
      */
-    @GetMapping("EmployeeDetail")
+    @GetMapping("employeeDetail")
     public String EmployeeDetail(@RequestParam long id, Model model) {
 
         // 社員情報を取得

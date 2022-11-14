@@ -10,126 +10,217 @@
 </head>
 <body>
   <h1 id="app-name">（研修用）社員管理システム</h1>
-  <h2 th:text="${screen_name}"></h2>
+  <th:block th:unless="${insertForm.id}">
+    <h2>社員情報登録画面 (SEMPM02)</h2>
+  </th:block>
+  <th:block th:if="${insertForm.id}">
+    <h2>社員情報訂正画面 (SEMPM02)</h2>
+  </th:block>
   <h2 class="txt_center">基本情報</h2>
   <div th:if="${validationError}" th:each="error : ${validationError}">
     <p style="color: red;" th:text="${error}"></p>
   </div>
   <form method="post" th:action="@{insert}" th:object="${insertForm}">
-    <table class="center">
-      <tr>
-        <td><label for="value1">ID</label></td>
-        <td>
-          <p th:text="${id}"></p>
-        </td>
-      </tr>
-      <tr>
-        <td><label for="value2">社員名</label></td>
-        <td><input type="text" name="name" th:value="${name}"></td>
-      </tr>
-      <tr>
-        <td><label for="value3">性別</label></td>
-        <th:block th:if="${screen_name == '社員情報登録画面 (SEMPM02)'}">
-          <td><input type="radio" name="sex" value="M">男性 <input type="radio" name="sex" value="F">女性</td>
-        </th:block>
-        <th:block th:if="${sex == 'M'}">
-          <td><input type="radio" name="sex" value="M" checked>男性 <input type="radio" name="sex" value="F">女性</td>
-        </th:block>
-        <th:block th:if="${sex == 'F'}">
-          <td><input type="radio" name="sex" value="M">男性 <input type="radio" name="sex" value="F" checked>女性</td>
-        </th:block>
-      </tr>
-      <tr>
-        <td><label for="value4">生年月日</label></td>
-        <td><input type="date" name="birthday" th:value="${birthday}" max="9999-12-31"></td>
-      </tr>
-      <tr>
-        <td><label for="value5">郵便番号</label></td>
-        <td><input type="text" id="postcode" name="zip" th:value="${zip}" placeholder="9999999">
-          <button type='button' id="btn">検索</button></td>
-      </tr>
-      <tr id="result">
-        <td><label for="value6">住所1</label></td>
-        <td><input type="text" name="address1" th:value="${address1}"></td>
-      </tr>
-      <tr>
-        <td><label for="value7">住所2</label></td>
-        <td><input type="text" name="address2" th:value="${address2}"></td>
-      </tr>
-      <tr>
-        <td><label for="value8">入社年月</label></td>
-        <td><input type="text" name="nyushaym" th:value="${nyushaym}"></input></td>
-      </tr>
-      <tr>
-        <td><label for="value9">所属部署</label></td>
-        <td><select name="division">
-            <option value="1" th:selected="${division == '1'}">ITサービス部</option>
-            <option value="2" th:selected="${division == '2'}">IST部</option>
-            <option value="3" th:selected="${division == '3'}">ITソリューション部</option>
-        </select></td>
-      </tr>
-      <tr>
-        <td><label for="value10">趣味</label></td>
-        <th:block th:if="${screen_name == '社員情報登録画面 (SEMPM02)'}">
-          <td><input type="checkbox" th:field="*{hobby}" value="1">映画鑑賞<br> <input type="checkbox" th:field="*{hobby}" value="2">音楽鑑賞<br>
-            <input type="checkbox" th:field="*{hobby}" value="3">スポーツ<br> <input type="checkbox" th:field="*{hobby}" value="4">ゲーム<br>
-            <input type="checkbox" th:field="*{hobby}" value="5">釣り<br> <input type="checkbox" th:field="*{hobby}" value="6">ドライブ<br>
-            <input type="checkbox" th:field="*{hobby}" value="7">読書<br> <input type="checkbox" th:field="*{hobby}" value="8">仕事<br>
-            <input type="checkbox" th:field="*{hobby}" value="9">その他<br></td>
-        </th:block>
-        <th:block th:if="${screen_name == '社員情報訂正画面 (SEMPM02)'}">
-          <td><input type="checkbox" name="hobby" th:value="1" th:checked="${hobby1 == '1' || hobby2 == '1' || hobby3 == '1'}">映画鑑賞<br>
-            <input type="checkbox" name="hobby" value="2" th:checked="${hobby1 == '2' || hobby2 == '2' || hobby3 == '2'}">音楽鑑賞<br> <input
-            type="checkbox" name="hobby" value="3" th:checked="${hobby1 == '3' || hobby2 == '3' || hobby3 == '3'}"
-          >スポーツ<br> <input type="checkbox" name="hobby" value="4" th:checked="${hobby1 == '4' || hobby2 == '4' || hobby3 == '4'}">ゲーム<br>
-            <input type="checkbox" name="hobby" value="5" th:checked="${hobby1 == '5' || hobby2 == '5' || hobby3 == '5'}">釣り<br> <input
-            type="checkbox" name="hobby" value="6" th:checked="${hobby1 == '6' || hobby2 == '6' || hobby3 == '6'}"
-          >ドライブ<br> <input type="checkbox" name="hobby" value="7" th:checked="${hobby1 == '7' || hobby2 == '7' || hobby3 == '7'}">読書<br>
-            <input type="checkbox" name="hobby" value="8" th:checked="${hobby1 == '8' || hobby2 == '8' || hobby3 == '8'}">仕事<br> <input
-            type="checkbox" name="hobby" value="9" th:checked="${hobby1 == '9' || hobby2 == '9' || hobby3 == '9'}"
-          >その他<br></td>
-        </th:block>
-      </tr>
-      <tr>
-        <td><label for="value11">自己紹介</label></td>
-        <td><textarea name="selfIntro" th:utext="${selfIntro}" placeholder="自己紹介文を入力してください。" rows="3" cols="30"></textarea></td>
-      </tr>
-    </table>
-    <br>
-    <div class="txt_center">
-      <label for="value12">職歴情報</label><input type="button" value="追加" onclick="coladd()">
-    </div>
-    <table id="tablevalue12" class="center">
-      <tr>
-        <td>開始期間</td>
-        <td>終了期間</td>
-        <td>案件名</td>
-        <td>編集</td>
-      </tr>
-      <th:block th:if="${screen_name == '社員情報登録画面 (SEMPM02)'}">
+    <fieldset>
+      <section class="center">
+        <div>
+          <label for="id">ID</label>
+          <th:block th:unless="*{id}">
+            <p id="id">※システムで自動採番されます</p>
+          </th:block>
+          <th:block th:if="*{id}">
+            <p id="id" th:text="*{id}"></p>
+          </th:block>
+        </div>
+        <div>
+          <label for="name">社員名</label> <input type="text" th:field="*{name}">
+        </div>
+        <div>
+          <label for="sex">性別</label> <input type="radio" th:each="s : ${sexMap}" id="sex" name="sex" th:value="${s.key}" th:text="${s.value}"
+            th:checked="${s.key == insertForm.sex}"
+          >
+        </div>
+        <div>
+          <label for="birthday">生年月日</label> <input type="date" th:field="*{birthday}" max="9999-12-31">
+        </div>
+        <div>
+          <label for="zip">郵便番号</label> <input type="text" id="postcode" th:field="*{zip}" placeholder="9999999">
+          <button type='button' id="btn">検索</button>
+        </div>
+        <div id="result">
+          <label for="address1">住所1</label> <input type="text" th:field="*{address1}">
+        </div>
+        <div>
+          <label for="address2">住所2</label> <input type="text" th:field="*{address2}">
+        </div>
+        <div>
+          <label for="nyushaym">入社年月</label> <input type="text" th:field="*{nyushaym}"></input>
+        </div>
+        <div>
+          <label for="division">所属部署</label> <select id="division" name="division">
+            <option th:each="d : ${divisionMap}" th:value="${d.key}" th:selected="${d.key == insertForm.division}">[[${d.value}]]</option>
+          </select>
+        </div>
+        <div>
+          <label for="hobby">趣味</label> <input type="checkbox" th:each="h : ${hobbyMap}" name="hobby" th:value="${h.key}" th:text="${h.value}"
+            th:checked="${h.key == insertForm.hobby}"
+          ><br>
+        </div>
+        <div>
+          <label for="selfIntro">自己紹介</label>
+          <textarea id="selfIntro" name="selfIntro" th:utext="${selfIntro}" placeholder="自己紹介文を入力してください。" rows="3" cols="30"></textarea>
+          <br>
+        </div>
+      </section>
+      <div class="txt_center">
+        <label for="value12">職歴情報</label><input type="button" value="追加" onclick="coladd()">
+      </div>
+      <table id="tablevalue12" class="center">
         <tr>
-          <td><input type="date" th:field="*{tcareerList[0].startDate}"></td>
-          <td><input type="date" th:field="*{tcareerList[0].endDate}"></td>
-          <td><input type="text" th:field="*{tcareerList[0].proposition}"></td>
-          <td><input type="button" value=削除 id="coldel_btn" onclick="coldel(this)"></td>
+          <td>開始期間</td>
+          <td>終了期間</td>
+          <td>案件名</td>
+          <td>編集</td>
         </tr>
-      </th:block>
-      <th:block th:if="${screen_name == '社員情報訂正画面 (SEMPM02)'}">
-        <tr th:each="tcareer, i : ${tcareerList}" th:object="${TcareerEntity}">
-          <td><input type="date" name="tcareerList[0].startDate" th:value="${tcareerList[i.index].startDate}"></td>
-          <td><input type="date" name="tcareerList[0].endDate" th:value="${tcareerList[i.index].endDate}"></td>
-          <td><input type="text" name="tcareerList[0].proposition" th:value="${tcareerList[i.index].proposition}"></td>
-          <td><input type="button" value=削除 id="coldel_btn" onclick="coldel(this)"></td>
-        </tr>
-      </th:block>
-    </table>
-    <br>
-    <div class="txt_center">
-      <button type="submit" class="form_btm">登録</button>
-    </div>
+        <th:block th:if="${tcareerList == null}">
+          <tr>
+            <td><input type="date" th:field="*{tcareerList[0].startDate}"></td>
+            <td><input type="date" th:field="*{tcareerList[0].endDate}"></td>
+            <td><input type="text" th:field="*{tcareerList[0].proposition}"></td>
+            <td><input type="button" value=削除 id="coldel_btn"></td>
+          </tr>
+        </th:block>
+        <th:block th:if="${tcareerList != null}">
+          <tr th:each="tcareer, i : ${tcareerList}">
+            <td><input type="date" name="tcareerList[0].startDate" th:value="${tcareerList[i.index].startDate}"></td>
+            <td><input type="date" name="tcareerList[0].endDate" th:value="${tcareerList[i.index].endDate}"></td>
+            <td><input type="text" name="tcareerList[0].proposition" th:value="${tcareerList[i.index].proposition}"></td>
+            <td><input type="button" value=削除 id="coldel_btn" onclick="coldel(this)"></td>
+          </tr>
+        </th:block>
+      </table>
+      <br>
+      <div class="txt_center">
+        <button type="submit" class="form_btm">登録</button>
+      </div>
+    </fieldset>
   </form>
-  <form method="get" th:action="@{top}">
+  <form method="get" th:action="@{menu}">
     <button type="submit">戻る</button>
   </form>
+  <!--   <h1 id="app-name">（研修用）社員管理システム</h1> -->
+  <!--   <h2 th:text="${screen_name}"></h2> -->
+  <!--   <h2 class="txt_center">基本情報</h2> -->
+  <!--   <div th:if="${validationError}" th:each="error : ${validationError}"> -->
+  <!--     <p style="color: red;" th:text="${error}"></p> -->
+  <!--   </div> -->
+  <!--   <form method="post" th:action="@{insert_action}" th:object="${insertForm}"> -->
+  <!--     <table class="center"> -->
+  <!--       <tr> -->
+  <!--         <td><label for="value1">ID</label></td> -->
+  <!--         <td> -->
+  <!--           <p th:text="${id}"></p> -->
+  <!--         </td> -->
+  <!--       </tr> -->
+  <!--       <tr> -->
+  <!--         <td><label for="value2">社員名</label></td> -->
+  <!--         <td><input type="text" name="name" th:value="${name}"></td> -->
+  <!--       </tr> -->
+  <!--       <tr> -->
+  <!--         <td><label for="value3">性別</label></td> -->
+  <!--         <td th:each="s : ${sexMap}"><input type="radio" name="sex" th:value="${s.key}" th:text="${s.value}" th:checked="${s.key == sex}"></td> -->
+  <!--       </tr> -->
+  <!--       <tr> -->
+  <!--         <td><label for="value4">生年月日</label></td> -->
+  <!--         <td><input type="date" name="birthday" th:value="${birthday}" max="9999-12-31"></td> -->
+  <!--       </tr> -->
+  <!--       <tr> -->
+  <!--         <td><label for="value5">郵便番号</label></td> -->
+  <!--         <td><input type="text" id="postcode" name="zip" th:value="${zip}" placeholder="9999999"> -->
+  <!--           <button type='button' id="btn">検索</button></td> -->
+  <!--       </tr> -->
+  <!--       <tr id="result"> -->
+  <!--         <td><label for="value6">住所1</label></td> -->
+  <!--         <td><input type="text" name="address1" th:value="${address1}"></td> -->
+  <!--       </tr> -->
+  <!--       <tr> -->
+  <!--         <td><label for="value7">住所2</label></td> -->
+  <!--         <td><input type="text" name="address2" th:value="${address2}"></td> -->
+  <!--       </tr> -->
+  <!--       <tr> -->
+  <!--         <td><label for="value8">入社年月</label></td> -->
+  <!--         <td><input type="text" name="nyushaym" th:value="${nyushaym}"></input></td> -->
+  <!--       </tr> -->
+  <!--       <tr> -->
+  <!--         <td><label for="value9">所属部署</label></td> -->
+  <!--         <td><select name="division"> -->
+  <!--             <option value="1" th:selected="${division == '1'}">ITサービス部</option> -->
+  <!--             <option value="2" th:selected="${division == '2'}">IST部</option> -->
+  <!--             <option value="3" th:selected="${division == '3'}">ITソリューション部</option> -->
+  <!--         </select></td> -->
+  <!--       </tr> -->
+  <!--       <tr> -->
+  <!--         <td><label for="value10">趣味</label></td> -->
+  <!--         <th:block th:if="${screen_name == '社員情報登録画面 (SEMPM02)'}"> -->
+  <!--           <td><input type="checkbox" th:field="*{hobby}" value="1">映画鑑賞<br> <input type="checkbox" th:field="*{hobby}" value="2">音楽鑑賞<br> -->
+  <!--             <input type="checkbox" th:field="*{hobby}" value="3">スポーツ<br> <input type="checkbox" th:field="*{hobby}" value="4">ゲーム<br> -->
+  <!--             <input type="checkbox" th:field="*{hobby}" value="5">釣り<br> <input type="checkbox" th:field="*{hobby}" value="6">ドライブ<br> -->
+  <!--             <input type="checkbox" th:field="*{hobby}" value="7">読書<br> <input type="checkbox" th:field="*{hobby}" value="8">仕事<br> -->
+  <!--             <input type="checkbox" th:field="*{hobby}" value="9">その他<br></td> -->
+  <!--         </th:block> -->
+  <!--         <th:block th:if="${screen_name == '社員情報訂正画面 (SEMPM02)'}"> -->
+  <!--           <td><input type="checkbox" name="hobby" th:value="1" th:checked="${hobby1 == '1' || hobby2 == '1' || hobby3 == '1'}">映画鑑賞<br> -->
+  <!--             <input type="checkbox" name="hobby" value="2" th:checked="${hobby1 == '2' || hobby2 == '2' || hobby3 == '2'}">音楽鑑賞<br> <input -->
+  <!--             type="checkbox" name="hobby" value="3" th:checked="${hobby1 == '3' || hobby2 == '3' || hobby3 == '3'}" -->
+  <!--           >スポーツ<br> <input type="checkbox" name="hobby" value="4" th:checked="${hobby1 == '4' || hobby2 == '4' || hobby3 == '4'}">ゲーム<br> -->
+  <!--             <input type="checkbox" name="hobby" value="5" th:checked="${hobby1 == '5' || hobby2 == '5' || hobby3 == '5'}">釣り<br> <input -->
+  <!--             type="checkbox" name="hobby" value="6" th:checked="${hobby1 == '6' || hobby2 == '6' || hobby3 == '6'}" -->
+  <!--           >ドライブ<br> <input type="checkbox" name="hobby" value="7" th:checked="${hobby1 == '7' || hobby2 == '7' || hobby3 == '7'}">読書<br> -->
+  <!--             <input type="checkbox" name="hobby" value="8" th:checked="${hobby1 == '8' || hobby2 == '8' || hobby3 == '8'}">仕事<br> <input -->
+  <!--             type="checkbox" name="hobby" value="9" th:checked="${hobby1 == '9' || hobby2 == '9' || hobby3 == '9'}" -->
+  <!--           >その他<br></td> -->
+  <!--         </th:block> -->
+  <!--       </tr> -->
+  <!--       <tr> -->
+  <!--         <td><label for="value11">自己紹介</label></td> -->
+  <!--         <td><textarea name="selfIntro" th:utext="${selfIntro}" placeholder="自己紹介文を入力してください。" rows="3" cols="30"></textarea></td> -->
+  <!--       </tr> -->
+  <!--     </table> -->
+  <!--     <br> -->
+  <!--     <div class="txt_center"> -->
+  <!--       <label for="value12">職歴情報</label><input type="button" value="追加" onclick="coladd()"> -->
+  <!--     </div> -->
+  <!--     <table id="tablevalue12" class="center"> -->
+  <!--       <tr> -->
+  <!--         <td>開始期間</td> -->
+  <!--         <td>終了期間</td> -->
+  <!--         <td>案件名</td> -->
+  <!--         <td>編集</td> -->
+  <!--       </tr> -->
+  <!--       <th:block th:if="${tcareerList == null}"> -->
+  <!--         <tr> -->
+  <!--           <td><input type="date" th:field="*{tcareerList[0].startDate}"></td> -->
+  <!--           <td><input type="date" th:field="*{tcareerList[0].endDate}"></td> -->
+  <!--           <td><input type="text" th:field="*{tcareerList[0].proposition}"></td> -->
+  <!--           <td><input type="button" value=削除 id="coldel_btn"></td> -->
+  <!--         </tr> -->
+  <!--       </th:block> -->
+  <!--       <th:block th:if="${tcareerList != null}"> -->
+  <!--         <tr th:each="tcareer, i : ${tcareerList}"> -->
+  <!--           <td><input type="date" name="tcareerList[0].startDate" th:value="${tcareerList[i.index].startDate}"></td> -->
+  <!--           <td><input type="date" name="tcareerList[0].endDate" th:value="${tcareerList[i.index].endDate}"></td> -->
+  <!--           <td><input type="text" name="tcareerList[0].proposition" th:value="${tcareerList[i.index].proposition}"></td> -->
+  <!--           <td><input type="button" value=削除 id="coldel_btn" onclick="coldel(this)"></td> -->
+  <!--         </tr> -->
+  <!--       </th:block> -->
+  <!--     </table> -->
+  <!--     <br> -->
+  <!--     <div class="txt_center"> -->
+  <!--       <button type="submit" class="form_btm">登録</button> -->
+  <!--     </div> -->
+  <!--   </form> -->
+  <!--   <form method="get" th:action="@{top}"> -->
+  <!--     <button type="submit">戻る</button> -->
+  <!--   </form> -->
 </body>
 </html>

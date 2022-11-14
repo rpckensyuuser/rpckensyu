@@ -27,8 +27,8 @@ public class EmployeeListController {
      * @param model 画面のモデル
      * @return 社員情報一覧画面
      */
-    @GetMapping("EmployeeList")
-    public String EmployeeList(Model model) {
+    @GetMapping("employeeList")
+    public String employeeList(Model model) {
 
         // すべての社員情報データを取得
         List<TemployeeEntity> temployeeEntityList = selectService.AllTemployee();
@@ -43,8 +43,8 @@ public class EmployeeListController {
      * @param model 画面のモデル
      * @return 社員情報一覧画面
      */
-    @PostMapping("EmployeeList")
-    public String SearchEmployeeList(@ModelAttribute EmployeeListForm searchCriteria, Model model) {
+    @PostMapping("employeeList/search")
+    public String searchEmployeeList(@ModelAttribute EmployeeListForm searchCriteria, Model model) {
 
         // 検索した社員情報データを取得
         List<TemployeeEntity> temployeeEntityList = selectService.SearchTemployee(searchCriteria);

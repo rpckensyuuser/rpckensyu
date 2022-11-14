@@ -3,7 +3,7 @@
 <mapper namespace="com.app_kensyu.dao.UpdatetDao">
 
     <update id="updatetTemployeeTbl" parameterType="com.app_kensyu.entity.TemployeeEntity">
-        update TEMPLOYEE_TBL
+        update rpcDB.TEMPLOYEE_TBL
         <set>
             <if test="name != null and name != ''">NAME=#{name},</if>
             <if test="sex != null and sex != ''">SEX=#{sex},</if>
@@ -23,7 +23,7 @@
 
     <update id="updatetTcarerrTbl" parameterType="com.app_kensyu.entity.TcareerEntity">
         <selectKey keyProperty="seq" resultType="long" order="BEFORE">
-            SELECT SEQ FROM TCAREER_TBL WHERE ID=#{id};
+            SELECT SEQ FROM rpcDB.TCAREER_TBL WHERE ID=#{id};
         </selectKey>
         update TCAREER_TBL
         <set>
