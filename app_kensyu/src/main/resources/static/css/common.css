@@ -1,19 +1,7 @@
+/* 共通 */
 body {
 	color: #333;
-}
-
-.form_btm {
-	background-color: rgb(33, 33, 33);
-	color: #fff;
-	padding: 10px 60px;
-}
-
-.center {
-	margin: auto;
-}
-
-.txt_center {
-	text-align: center;
+	font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
 }
 
 #app-name {
@@ -27,6 +15,55 @@ body {
 	color: #feffff;
 }
 
+.center {
+	margin: auto;
+}
+
+.txt_center {
+	text-align: center;
+}
+
+.form_btm {
+	color: #fff;
+	background-color: rgb(33, 33, 33);
+	padding: 10px 60px;
+	border-radius: 20px;
+}
+
+/* menu画面 */
+/* 登録・訂正画面 */
+fieldset {
+	border: none;
+}
+
+#form_table {
+	margin: 0 auto;
+}
+
+.clm_label, .clm_form {
+	text-align: left;
+	padding: 10px 5px 0px 10px;
+}
+
+.register-form {
+	width: 50%;
+	/* 	height: 20px; */
+	/* 	padding: 5px; */
+	margin: 0 auto;
+}
+
+.register-form label {
+	width: 165px;
+	float: left;
+	clear: both;
+	display: block;
+}
+
+#tablevalue12 {
+	margin: auto;
+}
+
+/* 一覧画面 */
 .design03 {
 	width: 100%;
 	text-align: center;
@@ -40,18 +77,13 @@ body {
 }
 
 .design03 th, .design03 td {
-	padding: 5px;
+	padding: 3px;
 	border-bottom: solid 1px #000000;
 }
-
-.temployeeDetail {
-	border-collapse: collapse;
-	margin: 0 auto;
-}
-
+/* 明細画面 */
 table.temployeeDetail td, th {
 	border-top: 1px solid #666;
-	padding: 10px;
+	padding: 5px;
 }
 
 table.temployeeDetail tr:last-child td, table.temployeeDetail tr:last-child th {
@@ -60,12 +92,12 @@ table.temployeeDetail tr:last-child td, table.temployeeDetail tr:last-child th {
 
 .tcareer {
 	margin: auto;
-	background-color: rgb(33, 33, 33);
+	/* 	background-color: rgb(33, 33, 33); */
+	border-bottom: 1px solid #666;
 	text-align: center;
-	padding: 20px 0;
-	width: 50%;
+	padding: 10px 0;
+	width: 60%;
 	height: 20px;
-	color: #feffff;
 	text-align: center;
 }
 
@@ -87,6 +119,8 @@ table.tcareerDetail td {
 	padding: 4px 8px;
 }
 
-div {
-	margin: auto;
+.temployeeDetail {
+	border-collapse: collapse;
+	margin: 0 auto;
 }
+/* 完了画面 */

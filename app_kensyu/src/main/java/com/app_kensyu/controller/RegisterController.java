@@ -53,6 +53,7 @@ public class RegisterController {
         model.addAttribute("sexMap", sexMap);
         model.addAttribute("divisionMap", divisionMap);
         model.addAttribute("hobbyMap", hobbyMap);
+
         model.addAttribute("insertForm", new InsertForm());
 
         return "Register";
