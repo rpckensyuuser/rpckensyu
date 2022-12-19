@@ -17,7 +17,7 @@
   <div th:if="${validationError}" th:each="error : ${validationError}">
     <p style="color: red;" th:text="${error}"></p>
   </div>
-  <form method="post" th:action="@{insert}" th:object="${insertForm}">
+  <form method="post" action="/app_kensyu/insert" th:object="${insertForm}">
     <table id="form_table">
       <tr class="low_id">
         <td class="clm_label"><label for="id">ID</label></td>
@@ -109,7 +109,7 @@
       <button type="submit" class="form_btm">登録</button>
     </div>
   </form>
-  <form method="get" th:action="@{menu}">
+  <form method="get" action="/app_kensyu/menu">
     <button type="submit">戻る</button>
   </form>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>

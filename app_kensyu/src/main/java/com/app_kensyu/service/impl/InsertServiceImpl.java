@@ -16,10 +16,14 @@ public class InsertServiceImpl implements InsertService {
     @Autowired
     private InsertDao insertDao;
 
-    TemployeeEntity temployeeEntity = new TemployeeEntity();
-
     @Override
-    public void insertTemployee(InsertForm insertForm) {
+    public TemployeeEntity insertTemployee(InsertForm insertForm) {
+
+        //void関数からTemployeeEntity型の変数をリターンする処理に変更する
+        //コントローラーでTemployeeEntity型の変数からIDを取得してinsertTcarerr引数として渡す。
+        //insertTcarerrには引数IDを追加する
+
+        TemployeeEntity temployeeEntity = new TemployeeEntity();
 
         temployeeEntity.setName(insertForm.getName());
         temployeeEntity.setSex(insertForm.getSex());
@@ -41,10 +45,12 @@ public class InsertServiceImpl implements InsertService {
         temployeeEntity.setSelfIntro(insertForm.getSelfIntro());
 
         insertDao.insertTemployeeTbl(temployeeEntity);
+
+        return temployeeEntity;
     }
 
     @Override
-    public void insertTcarerr(InsertForm insertForm) {
+    public void insertTcarerr(InsertForm insertForm, TemployeeEntity temployeeEntity) {
 
         TcareerEntity tcareerEntity = new TcareerEntity();
 

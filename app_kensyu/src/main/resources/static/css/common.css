@@ -27,7 +27,7 @@ body {
 	color: #fff;
 	background-color: rgb(33, 33, 33);
 	padding: 10px 60px;
-	border-radius: 20px;
+	border-radius: 17px;
 }
 
 /* menu画面 */
@@ -83,7 +83,7 @@ fieldset {
 /* 明細画面 */
 table.temployeeDetail td, th {
 	border-top: 1px solid #666;
-	padding: 5px;
+	padding: 5px 20px;
 }
 
 table.temployeeDetail tr:last-child td, table.temployeeDetail tr:last-child th {
@@ -116,7 +116,7 @@ table.tcareerDetail th {
 table.tcareerDetail td {
 	border: 1px solid #000066;
 	background: #ffffff;
-	padding: 4px 8px;
+	padding: 5px 35px;
 }
 
 .temployeeDetail {
