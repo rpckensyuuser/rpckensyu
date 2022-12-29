@@ -23,7 +23,7 @@ public class InsertForm {
 
     //社員名
     @NotBlank(message = "社員名を入力してください")
-    @Length(min = 1, max = 50, message = "氏名を1文字以上50文字以内で入力してください")
+    @Length(max = 50, message = "氏名を50文字以内で入力してください")
     private String name;
 
     //性別
@@ -35,7 +35,7 @@ public class InsertForm {
     private String birthday;
 
     //郵便番号
-    @Pattern(regexp = "\\d{7}", message = "郵便番号を[9999999]形式で入力してください")
+    @Pattern(regexp = "[0-9]{7}|[0-9]{3}-[0-9]{4}", message = "郵便番号を[半角数字7桁]で入力してください")
     private String zip;
 
     //住所１

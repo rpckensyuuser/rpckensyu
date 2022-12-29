@@ -28,7 +28,7 @@ public class InsertServiceImpl implements InsertService {
         temployeeEntity.setName(insertForm.getName());
         temployeeEntity.setSex(insertForm.getSex());
         temployeeEntity.setBirthday(insertForm.getBirthday());
-        temployeeEntity.setZip(insertForm.getZip());
+        temployeeEntity.setZip(insertForm.getZip().replace("-", ""));
         temployeeEntity.setAddress1(insertForm.getAddress1());
         temployeeEntity.setAddress2(insertForm.getAddress2());
         temployeeEntity.setNyushaym(insertForm.getNyushaym());
