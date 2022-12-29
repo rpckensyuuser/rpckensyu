@@ -19,10 +19,6 @@ public class InsertServiceImpl implements InsertService {
     @Override
     public TemployeeEntity insertTemployee(InsertForm insertForm) {
 
-        //void関数からTemployeeEntity型の変数をリターンする処理に変更する
-        //コントローラーでTemployeeEntity型の変数からIDを取得してinsertTcarerr引数として渡す。
-        //insertTcarerrには引数IDを追加する
-
         TemployeeEntity temployeeEntity = new TemployeeEntity();
 
         temployeeEntity.setName(insertForm.getName());
