@@ -21,6 +21,7 @@ public class UpdateServiceImpl implements UpdateService {
     @Override
     public void updateTemployee(InsertForm insertForm) {
 
+        temployeeEntity.setId(insertForm.getId());
         temployeeEntity.setName(insertForm.getName());
         temployeeEntity.setSex(insertForm.getSex());
         temployeeEntity.setBirthday(insertForm.getBirthday());
