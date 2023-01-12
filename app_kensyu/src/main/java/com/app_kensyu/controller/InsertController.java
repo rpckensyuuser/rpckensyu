@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.app_kensyu.entity.McodeEntity;
+import com.app_kensyu.entity.TemployeeEntity;
 import com.app_kensyu.form.InsertForm;
 import com.app_kensyu.service.InsertService;
 import com.app_kensyu.service.SelectService;
@@ -79,15 +80,15 @@ public class InsertController {
             return "Register";
         }
 
-        if (insertForm.getId() > 0) {
+        if (insertForm.getId() == 0) {
             //社員情報テーブル追加
-            insertService.insertTemployee(insertForm);
+            TemployeeEntity temployeeEntity = insertService.insertTemployee(insertForm);
             //職歴情報テーブル追加
-            insertService.insertTcarerr(insertForm);
+            insertService.insertTcarerr(insertForm, temployeeEntity);
         } else {
-            //社員情報テーブル追加
+            //社員情報テーブル更新
             updateService.updateTemployee(insertForm);
-            //職歴情報テーブル追加
+            //職歴情報テーブル更新
             updateService.updateTcarerr(insertForm);
         }
 

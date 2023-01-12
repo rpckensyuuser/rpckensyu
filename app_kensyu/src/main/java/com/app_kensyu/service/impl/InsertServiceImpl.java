@@ -16,15 +16,15 @@ public class InsertServiceImpl implements InsertService {
     @Autowired
     private InsertDao insertDao;
 
-    TemployeeEntity temployeeEntity = new TemployeeEntity();
-
     @Override
-    public void insertTemployee(InsertForm insertForm) {
+    public TemployeeEntity insertTemployee(InsertForm insertForm) {
+
+        TemployeeEntity temployeeEntity = new TemployeeEntity();
 
         temployeeEntity.setName(insertForm.getName());
         temployeeEntity.setSex(insertForm.getSex());
         temployeeEntity.setBirthday(insertForm.getBirthday());
-        temployeeEntity.setZip(insertForm.getZip());
+        temployeeEntity.setZip(insertForm.getZip().replace("-", ""));
         temployeeEntity.setAddress1(insertForm.getAddress1());
         temployeeEntity.setAddress2(insertForm.getAddress2());
         temployeeEntity.setNyushaym(insertForm.getNyushaym());
@@ -41,10 +41,12 @@ public class InsertServiceImpl implements InsertService {
         temployeeEntity.setSelfIntro(insertForm.getSelfIntro());
 
         insertDao.insertTemployeeTbl(temployeeEntity);
+
+        return temployeeEntity;
     }
 
     @Override
-    public void insertTcarerr(InsertForm insertForm) {
+    public void insertTcarerr(InsertForm insertForm, TemployeeEntity temployeeEntity) {
 
         TcareerEntity tcareerEntity = new TcareerEntity();
 
