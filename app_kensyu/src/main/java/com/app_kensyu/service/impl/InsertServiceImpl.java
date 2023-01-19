@@ -29,13 +29,15 @@ public class InsertServiceImpl implements InsertService {
         temployeeEntity.setAddress2(insertForm.getAddress2());
         temployeeEntity.setNyushaym(insertForm.getNyushaym());
         temployeeEntity.setDivision(insertForm.getDivision());
-        for (int i = 0; i < insertForm.getHobby().length; i++) {
-            if (i == 0) {
-                temployeeEntity.setHobby1(insertForm.getHobby()[i]);
-            } else if (i == 1) {
-                temployeeEntity.setHobby2(insertForm.getHobby()[i]);
-            } else if (i == 2) {
-                temployeeEntity.setHobby3(insertForm.getHobby()[i]);
+        if (insertForm.getHobby() != null) {
+            for (int i = 0; i < insertForm.getHobby().length; i++) {
+                if (i == 0) {
+                    temployeeEntity.setHobby1(insertForm.getHobby()[i]);
+                } else if (i == 1) {
+                    temployeeEntity.setHobby2(insertForm.getHobby()[i]);
+                } else if (i == 2) {
+                    temployeeEntity.setHobby3(insertForm.getHobby()[i]);
+                }
             }
         }
         temployeeEntity.setSelfIntro(insertForm.getSelfIntro());

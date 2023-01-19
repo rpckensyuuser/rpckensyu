@@ -25,6 +25,7 @@
             <p id="id">※システムで自動採番されます</p>
           </th:block> <th:block th:if="*{id}">
             <p id="id" th:text="${id}"></p>
+            <input type="hidden" id="id" name="id" th:value="${id}">
           </th:block></td>
       </tr>
       <tr class="low_name">
@@ -48,7 +49,7 @@
       </tr>
       <tr class="low_address1">
         <td class="clm_label"><label for="address1">住所1</label></td>
-        <td class="clm_form"><input type="text" name="address1" th:value="${address1}"></td>
+        <td class="clm_form"><input type="text" id="address1" name="address1" th:value="${address1}"></td>
       </tr>
       <tr class="low_address2">
         <td class="clm_label"><label for="address2">住所2</label></td>
