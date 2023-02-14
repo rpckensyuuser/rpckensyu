@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.app_kensyu.entity.McodeEntity;
 import com.app_kensyu.entity.TemployeeEntity;
 import com.app_kensyu.form.InsertForm;
+import com.app_kensyu.service.DeleteService;
 import com.app_kensyu.service.InsertService;
 import com.app_kensyu.service.SelectService;
 import com.app_kensyu.service.UpdateService;
@@ -38,6 +39,9 @@ public class InsertController {
 
     @Autowired
     private UpdateService updateService;
+
+    @Autowired
+    private DeleteService deleteService;
 
     /**
      * 初期表示
@@ -74,7 +78,9 @@ public class InsertController {
             model.addAttribute("sexMap", sexMap);
             model.addAttribute("divisionMap", divisionMap);
             model.addAttribute("hobbyMap", hobbyMap);
+            model.addAttribute("insertForm", insertForm);
             model.addAttribute("tcareerList", insertForm.getTcareerList());
+
             model.addAttribute("validationError", errorList);
 
             return "Register";
@@ -84,12 +90,14 @@ public class InsertController {
             //社員情報テーブル追加
             TemployeeEntity temployeeEntity = insertService.insertTemployee(insertForm);
             //職歴情報テーブル追加
-            insertService.insertTcarerr(insertForm, temployeeEntity);
+            insertService.insertTcarerr(insertForm, temployeeEntity.getId());
         } else {
             //社員情報テーブル更新
             updateService.updateTemployee(insertForm);
-            //職歴情報テーブル更新
-            updateService.updateTcarerr(insertForm);
+
+            // 職歴情報を全削除し、新規登録
+            deleteService.Tcareer(insertForm.getId());
+            insertService.insertTcarerr(insertForm, insertForm.getId());
         }
 
         return "Insert";

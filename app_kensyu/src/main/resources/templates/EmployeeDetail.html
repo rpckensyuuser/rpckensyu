@@ -124,7 +124,7 @@
     <form method="get" th:action="@{menu}">
       <button type="submit" class="form_btm">トップ</button>
     </form>
-    <form method="get" th:action="@{'/correction?id=' + ${temployee.id}}">
+    <form method="get" th:action="@{'/app_kensyu/correction?id=' + ${temployee.id}}">
       <button type='submit' class="form_btm">社員情報訂正</button>
     </form>
     <form method="get" th:action="@{employeeList}">

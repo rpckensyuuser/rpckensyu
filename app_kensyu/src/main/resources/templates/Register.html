@@ -24,12 +24,13 @@
         <td class="clm_form"><th:block th:unless="*{id}">
             <p id="id">※システムで自動採番されます</p>
           </th:block> <th:block th:if="*{id}">
-            <p id="id" th:text="*{id}"></p>
+            <p id="id" th:text="${insertForm.id}"></p>
+            <input type="hidden" id="id" name="id" th:value="${insertForm.id}">
           </th:block></td>
       </tr>
       <tr class="low_name">
         <td class="clm_label"><label for="name">社員名</label></td>
-        <td class="clm_form"><input type="text" th:field="*{name}"></td>
+        <td class="clm_form"><input type="text" name="name" th:value="${insertForm.name}"></td>
       </tr>
       <tr class="low_sex">
         <td class="clm_label"><label for="sex">性別</label></td>
@@ -39,24 +40,24 @@
       </tr>
       <tr class="low_birthday">
         <td class="clm_label"><label for="birthday">生年月日</label></td>
-        <td class="clm_form"><input type="date" th:field="*{birthday}" max="9999-12-31"></td>
+        <td class="clm_form"><input type="date" name="birthday" th:value="${insertForm.birthday}" max="9999-12-31"></td>
       </tr>
       <tr class="low_zip" id="result">
         <td class="clm_label"><label for="zip">郵便番号</label></td>
-        <td class="clm_form"><input type="text" id="postcode" th:field="*{zip}" placeholder="9999999">
+        <td class="clm_form"><input type="text" id="postcode" name="zip" th:value="${insertForm.zip}" placeholder="9999999">
           <button type='button' id="btn">検索</button></td>
       </tr>
       <tr class="low_address1">
         <td class="clm_label"><label for="address1">住所1</label></td>
-        <td class="clm_form"><input type="text" th:field="*{address1}"></td>
+        <td class="clm_form"><input type="text" id="address1" name="address1" th:value="${insertForm.address1}"></td>
       </tr>
       <tr class="low_address2">
         <td class="clm_label"><label for="address2">住所2</label></td>
-        <td class="clm_form"><input type="text" th:field="*{address2}"></td>
+        <td class="clm_form"><input type="text" name="address2" th:value="${insertForm.address2}"></td>
       </tr>
       <tr class="low_nyushaym">
         <td class="clm_label"><label for="nyushaym">入社年月</label></td>
-        <td class="clm_form"><input type="text" th:field="*{nyushaym}"></input></td>
+        <td class="clm_form"><input type="text" name="nyushaym" th:value="${insertForm.nyushaym}"></input></td>
       </tr>
       <tr class="low_division">
         <td class="clm_label"><label for="division">所属部署</label></td>
@@ -67,13 +68,18 @@
       <tr class="low_hobby">
         <td class="clm_label"><label for="hobby">趣味</label></td>
         <td class="clm_form"><th:block th:each="h : ${hobbyMap}">
-            <input type="checkbox" class="hobby-input" name="hobby" th:value="${h.key}" th:text="${h.value}" th:checked="${h.key == insertForm.hobby}">
+            <input type="checkbox" class="hobby-input" name="hobby" th:value="${h.key}" th:text="${h.value}"
+              th:checked="${insertForm.hobby1 == h.key || insertForm.hobby2 == h.key || insertForm.hobby3 == h.key}"
+            >
             <br>
           </th:block></td>
       </tr>
-      <tr class="low_selfIntro">
+      <tr class="
+            low_selfIntro">
         <td class="clm_label"><label for="selfIntro">自己紹介</label></td>
-        <td class="clm_form"><textarea id="selfIntro" name="selfIntro" th:utext="${selfIntro}" placeholder="自己紹介文を入力してください。" rows="3" cols="30"></textarea></td>
+        <td class="clm_form"><textarea id="selfIntro" name="selfIntro" th:utext="${insertForm.selfIntro}" placeholder="自己紹介文を入力してください。" rows="3"
+            cols="30"
+          ></textarea></td>
       </tr>
     </table>
     <br>
@@ -87,18 +93,18 @@
           <td>編集</td>
         </tr>
         <th:block th:if="${tcareerList == null}">
-          <tr>
-            <td><input type="date" th:field="*{tcareerList[0].startDate}"></td>
-            <td><input type="date" th:field="*{tcareerList[0].endDate}"></td>
-            <td><input type="text" th:field="*{tcareerList[0].proposition}"></td>
+          <tr class="tcareerDataRow">
+            <td><input type="date" class="startDate" th:field="*{tcareerList[0].startDate}"></td>
+            <td><input type="date" class="endDate" th:field="*{tcareerList[0].endDate}"></td>
+            <td><input type="text" class="proposition" th:field="*{tcareerList[0].proposition}"></td>
             <td><input type="button" value=削除 id="coldel_btn"></td>
           </tr>
         </th:block>
         <th:block th:if="${tcareerList != null}">
-          <tr th:each="tcareer, i : ${tcareerList}">
-            <td><input type="date" name="tcareerList[0].startDate" th:value="${tcareerList[i.index].startDate}"></td>
-            <td><input type="date" name="tcareerList[0].endDate" th:value="${tcareerList[i.index].endDate}"></td>
-            <td><input type="text" name="tcareerList[0].proposition" th:value="${tcareerList[i.index].proposition}"></td>
+          <tr class="tcareerDataRow" th:each="tcareer, i : ${tcareerList}">
+            <td><input type="date" class="startDate" name="tcareerList[+${i.index}+].startDate" th:value="${tcareerList[i.index].startDate}"></td>
+            <td><input type="date" class="startDate" name="tcareerList[+${i.index}+].endDate}" th:value="${tcareerList[i.index].endDate}"></td>
+            <td><input type="text" class="startDate" name="tcareerList[+${i.index}+].proposition}" th:value="${tcareerList[i.index].proposition}"></td>
             <td><input type="button" value=削除 id="coldel_btn" onclick="coldel(this)"></td>
           </tr>
         </th:block>
