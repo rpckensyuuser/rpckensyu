@@ -32,7 +32,7 @@ public class CorrectionController {
      * @return 社員情報訂正画面
      */
     @GetMapping("correction")
-    public String correction(@RequestParam long id, InsertForm insertForm, Model model) {
+    public String correction(@RequestParam long id, Model model) {
 
         // 画面に表示する情報（性別、所属部署、趣味）をDBから取得し、リストに代入。
         List<McodeEntity> mcodeList = selectService.mcode();
@@ -61,19 +61,23 @@ public class CorrectionController {
         // 職歴情報を取得
         List<TcareerEntity> tcareerList = selectService.OneTcareer(id);
 
-        model.addAttribute("id", temployee.getId());
-        model.addAttribute("name", temployee.getName());
-        model.addAttribute("sex", temployee.getSex());
-        model.addAttribute("birthday", temployee.getBirthday());
-        model.addAttribute("zip", temployee.getZip());
-        model.addAttribute("address1", temployee.getAddress1());
-        model.addAttribute("address2", temployee.getAddress2());
-        model.addAttribute("nyushaym", temployee.getNyushaym());
-        model.addAttribute("division", temployee.getDivision());
-        model.addAttribute("hobby1", temployee.getHobby1());
-        model.addAttribute("hobby2", temployee.getHobby2());
-        model.addAttribute("hobby3", temployee.getHobby3());
-        model.addAttribute("selfIntro", temployee.getSelfIntro());
+        InsertForm insertForm = new InsertForm();
+        insertForm.setId(temployee.getId());
+        insertForm.setName(temployee.getName());
+        insertForm.setSex(temployee.getSex());
+        insertForm.setBirthday(temployee.getBirthday());
+        insertForm.setZip(temployee.getZip());
+        insertForm.setAddress1(temployee.getAddress1());
+        insertForm.setAddress2(temployee.getAddress2());
+        insertForm.setNyushaym(temployee.getNyushaym());
+        insertForm.setDivision(temployee.getDivision());
+        insertForm.setHobby1(temployee.getHobby1());
+        insertForm.setHobby2(temployee.getHobby2());
+        insertForm.setHobby3(temployee.getHobby3());
+        insertForm.setSelfIntro(temployee.getSelfIntro());
+        // insertForm.setTcareerEntity(tcareerList);
+
+        model.addAttribute("insertForm", insertForm);
         model.addAttribute("tcareerList", tcareerList);
 
         return "Register";

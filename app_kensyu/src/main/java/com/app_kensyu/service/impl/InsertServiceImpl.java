@@ -48,18 +48,26 @@ public class InsertServiceImpl implements InsertService {
     }
 
     @Override
-    public void insertTcarerr(InsertForm insertForm, TemployeeEntity temployeeEntity) {
+    public void insertTcarerr(InsertForm insertForm, long id) {
 
         TcareerEntity tcareerEntity = new TcareerEntity();
 
         if (insertForm.getTcareerList().size() > 0) {
-            for (TcareerDTO Tcareer : insertForm.getTcareerList()) {
-                tcareerEntity.setId(temployeeEntity.getId());
-                tcareerEntity.setStartDate(Tcareer.getStartDate());
-                tcareerEntity.setEndDate(Tcareer.getEndDate());
-                tcareerEntity.setProposition(Tcareer.getProposition());
-
+            for (TcareerDTO tcareer : insertForm.getTcareerList()) {
+                tcareerEntity.setId(id);
+                tcareerEntity.setStartDate(tcareer.getStartDate());
+                tcareerEntity.setEndDate(tcareer.getEndDate());
+                tcareerEntity.setProposition(tcareer.getProposition());
+                //        if (insertForm.getTcareerList().length > 0) {
+                //            for (TcareerDTO Tcareer : insertForm.getTcareerList()) {
+                //                // int n = 0;
+                //                tcareerEntity.setId(id);
+                //                tcareerEntity.setStartDate(Tcareer.getTcareerDate().get(0));
+                //                tcareerEntity.setEndDate(Tcareer.getTcareerDate().get(1));
+                //                tcareerEntity.setProposition(Tcareer.getTcareerDate().get(2));
+                //
                 insertDao.insertTcarerrTbl(tcareerEntity);
+
             }
         }
     }

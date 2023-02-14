@@ -7,6 +7,6 @@ public interface InsertService {
 
     TemployeeEntity insertTemployee(InsertForm insertForm);
 
-    void insertTcarerr(InsertForm insertForm, TemployeeEntity temployeeEntity);
+    void insertTcarerr(InsertForm insertForm, long id);
 
 }

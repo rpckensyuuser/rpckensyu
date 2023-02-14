@@ -12,6 +12,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Length;
 
 import com.app_kensyu.dto.TcareerDTO;
+import com.app_kensyu.entity.TcareerEntity;
 
 import lombok.Data;
 
@@ -53,6 +54,15 @@ public class InsertForm {
     //所属部署
     private String division;
 
+    //趣味1（出力用）
+    private String hobby1;
+
+    //趣味2（出力用）
+    private String hobby2;
+
+    //趣味3（出力用）
+    private String hobby3;
+
     //趣味
     @Size(max = 3, message = "趣味は3つ以内で選択してください")
     private String hobby[];
@@ -65,5 +75,8 @@ public class InsertForm {
     @NotEmpty
     @Valid
     private List<TcareerDTO> tcareerList;
+
+    //職歴情報（出力用）
+    List<TcareerEntity> tcareerEntity;
 
 }
