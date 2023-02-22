@@ -8,12 +8,6 @@ import lombok.Data;
 @Data
 public class TcareerDTO {
 
-    //ID
-    private long id;
-
-    //SEQ
-    private long seq;
-
     //開始期間
     @NotEmpty(message = "開始期間を選択してください")
     private String startDate;

@@ -21,6 +21,7 @@ public class InsertServiceImpl implements InsertService {
 
         TemployeeEntity temployeeEntity = new TemployeeEntity();
 
+        // Entityクラスの変数に、フォームから受け取った社員情報を代入
         temployeeEntity.setName(insertForm.getName());
         temployeeEntity.setSex(insertForm.getSex());
         temployeeEntity.setBirthday(insertForm.getBirthday());
@@ -42,6 +43,7 @@ public class InsertServiceImpl implements InsertService {
         }
         temployeeEntity.setSelfIntro(insertForm.getSelfIntro());
 
+        //社員情報テーブルに、フォームの入力情報を登録
         insertDao.insertTemployeeTbl(temployeeEntity);
 
         return temployeeEntity;
@@ -54,20 +56,14 @@ public class InsertServiceImpl implements InsertService {
 
         if (insertForm.getTcareerList().size() > 0) {
             for (TcareerDTO tcareer : insertForm.getTcareerList()) {
+                // Entityクラスの変数に、フォームから受け取った職歴情報を1行ごと代入
                 tcareerEntity.setId(id);
                 tcareerEntity.setStartDate(tcareer.getStartDate());
                 tcareerEntity.setEndDate(tcareer.getEndDate());
                 tcareerEntity.setProposition(tcareer.getProposition());
-                //        if (insertForm.getTcareerList().length > 0) {
-                //            for (TcareerDTO Tcareer : insertForm.getTcareerList()) {
-                //                // int n = 0;
-                //                tcareerEntity.setId(id);
-                //                tcareerEntity.setStartDate(Tcareer.getTcareerDate().get(0));
-                //                tcareerEntity.setEndDate(Tcareer.getTcareerDate().get(1));
-                //                tcareerEntity.setProposition(Tcareer.getTcareerDate().get(2));
-                //
-                insertDao.insertTcarerrTbl(tcareerEntity);
 
+                //職歴情報テーブルに、フォームの入力情報を1行ごと登録
+                insertDao.insertTcarerrTbl(tcareerEntity);
             }
         }
     }

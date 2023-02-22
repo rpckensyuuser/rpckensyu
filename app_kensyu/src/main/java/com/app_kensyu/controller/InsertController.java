@@ -52,19 +52,21 @@ public class InsertController {
     public String insert(@Valid @ModelAttribute InsertForm insertForm, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
+
             List<String> errorList = new ArrayList<String>();
             for (ObjectError error : bindingResult.getAllErrors()) {
                 errorList.add(error.getDefaultMessage());
             }
-
-            // 画面に表示する情報（性別、所属部署、趣味）をDBから取得し、リストに代入。
-            List<McodeEntity> mcodeList = selectService.mcode();
 
             // 性別、所属部署、趣味それぞれの情報を代入する変数
             Map<String, String> sexMap = new HashMap<String, String>();
             Map<String, String> divisionMap = new HashMap<String, String>();
             Map<String, String> hobbyMap = new HashMap<String, String>();
 
+            // 画面に表示する情報（性別、所属部署、趣味）をDBから取得し、リストに代入。
+            List<McodeEntity> mcodeList = selectService.mcode();
+
+            // [性別、所属部署、趣味]それぞれの変数（Map）に、データベースから取得した情報を代入。
             for (McodeEntity mcode : mcodeList) {
                 if (mcode.getCLASSTYPE().equals("C0001")) {
                     sexMap.put(mcode.getCODE(), mcode.getCODENAME());
@@ -75,32 +77,44 @@ public class InsertController {
                 }
             }
 
+            // バリデーションエラーが起きた際、選択されていた趣味の情報を、insertFormの出力用の変数に代入。
+            if (insertForm.getHobby() != null) {
+                for (int i = 0; i < insertForm.getHobby().length; i++) {
+                    if (i == 0) {
+                        insertForm.setHobby1(insertForm.getHobby()[i]);
+                    } else if (i == 1) {
+                        insertForm.setHobby2(insertForm.getHobby()[i]);
+                    } else if (i == 2) {
+                        insertForm.setHobby3(insertForm.getHobby()[i]);
+                    }
+                }
+            }
+
+            model.addAttribute("validationError", errorList);
+
             model.addAttribute("sexMap", sexMap);
             model.addAttribute("divisionMap", divisionMap);
             model.addAttribute("hobbyMap", hobbyMap);
+
             model.addAttribute("insertForm", insertForm);
             model.addAttribute("tcareerList", insertForm.getTcareerList());
-
-            model.addAttribute("validationError", errorList);
 
             return "Register";
         }
 
         if (insertForm.getId() == 0) {
-            //社員情報テーブル追加
+            //データベースに社員情報を登録
             TemployeeEntity temployeeEntity = insertService.insertTemployee(insertForm);
-            //職歴情報テーブル追加
+            //データベースに職歴情報を登録
             insertService.insertTcarerr(insertForm, temployeeEntity.getId());
         } else {
-            //社員情報テーブル更新
+            //データベースの社員情報を更新
             updateService.updateTemployee(insertForm);
-
-            // 職歴情報を全削除し、新規登録
+            // データベースの職歴情報を更新（職歴情報を全削除し、新規登録）
             deleteService.Tcareer(insertForm.getId());
             insertService.insertTcarerr(insertForm, insertForm.getId());
         }
 
         return "Insert";
-
     }
 }
