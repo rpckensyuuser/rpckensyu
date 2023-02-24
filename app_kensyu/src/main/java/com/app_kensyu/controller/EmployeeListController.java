@@ -17,6 +17,7 @@ import com.app_kensyu.service.SelectService;
  * 社員情報一覧画面のコントローラ
  */
 @Controller
+//@RequestMapping("/*")
 public class EmployeeListController {
 
     @Autowired

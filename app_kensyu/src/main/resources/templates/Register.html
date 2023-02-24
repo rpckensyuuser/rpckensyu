@@ -91,7 +91,7 @@
           <td>案件名</td>
           <td>編集</td>
         </tr>
-        <th:block th:if="${tcareerDataList == null}">
+        <th:block th:if="*{tcareerEntityList == null}">
           <tr class="tcareerDataRow">
             <td><input type="date" class="startDate" th:field="*{tcareerList[0].startDate}"></td>
             <td><input type="date" class="endDate" th:field="*{tcareerList[0].endDate}"></td>
@@ -99,8 +99,8 @@
             <td><input type="button" value=削除 id="coldel_btn"></td>
           </tr>
         </th:block>
-        <th:block th:if="${tcareerDataList != null}">
-          <tr class="tcareerDataRow" th:each="tcareer, i : ${tcareerDataList}">
+        <th:block th:if="*{tcareerEntityList != null}">
+          <tr class="tcareerDataRow" th:each="tcareer, i : *{tcareerEntityList}">
             <td><input type="date" class="startDate" th:name="'tcareerList[' + ${i.index} + '].startDate'" th:value="${tcareer.startDate}"></td>
             <td><input type="date" class="endDate" th:name="'tcareerList[' + ${i.index} + '].endDate'" th:value="${tcareer.endDate}"></td>
             <td><input type="text" class="proposition" th:name="'tcareerList[' + ${i.index} + '].proposition'" th:value="${tcareer.proposition}"></td>

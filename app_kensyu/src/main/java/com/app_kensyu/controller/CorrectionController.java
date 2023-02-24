@@ -56,7 +56,7 @@ public class CorrectionController {
         // データベースから社員情報を取得
         TemployeeEntity temployee = selectService.OneTemployee(id);
         // データベースから職歴情報を取得
-        List<TcareerEntity> tcareerDataList = selectService.OneTcareer(id);
+        List<TcareerEntity> tcareerEntityList = selectService.OneTcareer(id);
 
         InsertForm insertForm = new InsertForm();
         insertForm.setId(temployee.getId());
@@ -72,14 +72,13 @@ public class CorrectionController {
         insertForm.setHobby2(temployee.getHobby2());
         insertForm.setHobby3(temployee.getHobby3());
         insertForm.setSelfIntro(temployee.getSelfIntro());
-        // insertForm.setTcareerEntity(tcareerList);
+        insertForm.setTcareerEntityList(tcareerEntityList);
 
         model.addAttribute("sexMap", sexMap);
         model.addAttribute("divisionMap", divisionMap);
         model.addAttribute("hobbyMap", hobbyMap);
 
         model.addAttribute("insertForm", insertForm);
-        model.addAttribute("tcareerDataList", tcareerDataList);
 
         return "Register";
     }

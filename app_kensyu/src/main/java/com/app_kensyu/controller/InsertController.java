@@ -110,7 +110,7 @@ public class InsertController {
         } else {
             //データベースの社員情報を更新
             updateService.updateTemployee(insertForm);
-            // データベースの職歴情報を更新（職歴情報を全削除し、新規登録）
+            //データベースの職歴情報を更新（職歴情報を全削除し、新規登録）
             deleteService.Tcareer(insertForm.getId());
             insertService.insertTcarerr(insertForm, insertForm.getId());
         }

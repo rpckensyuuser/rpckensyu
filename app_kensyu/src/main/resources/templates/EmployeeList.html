@@ -9,7 +9,7 @@
   <h1 id="app-name">（研修用）社員管理システム</h1>
   <h2>社員情報一覧画面(EMPM03)</h2>
   <div class="center">
-    <form method="post" th:action="@{employeeList}" th:object="${employeeListForm}">
+    <form method="post" action="/app_kensyu/employeeList/search" th:object="${employeeListForm}">
       <label>検索機能 <input type="text" th:field="*{name}" placeholder="氏名"> <select th:field="*{division}">
           <option value="">未選択</option>
           <option value="1">ITサービス部</option>
@@ -51,7 +51,7 @@
     </tr>
   </table>
   <br>
-  <form method="get" th:action="@{menu}">
+  <form method="get" action="/app_kensyu/menu">
     <button type="submit">戻る</button>
   </form>
 </body>
