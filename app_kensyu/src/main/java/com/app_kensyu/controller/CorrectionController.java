@@ -72,13 +72,14 @@ public class CorrectionController {
         insertForm.setHobby2(temployee.getHobby2());
         insertForm.setHobby3(temployee.getHobby3());
         insertForm.setSelfIntro(temployee.getSelfIntro());
-        insertForm.setTcareerEntityList(tcareerEntityList);
+        // insertForm.setTcareerEntityList(tcareerEntityList);
 
         model.addAttribute("sexMap", sexMap);
         model.addAttribute("divisionMap", divisionMap);
         model.addAttribute("hobbyMap", hobbyMap);
 
         model.addAttribute("insertForm", insertForm);
+        model.addAttribute("tcareerDataList", tcareerEntityList);
 
         return "Register";
     }

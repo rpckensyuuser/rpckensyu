@@ -97,7 +97,7 @@ public class InsertController {
             model.addAttribute("hobbyMap", hobbyMap);
 
             model.addAttribute("insertForm", insertForm);
-            model.addAttribute("tcareerList", insertForm.getTcareerList());
+            model.addAttribute("tcareerDataList", insertForm.getTcareerList());
 
             return "Register";
         }
