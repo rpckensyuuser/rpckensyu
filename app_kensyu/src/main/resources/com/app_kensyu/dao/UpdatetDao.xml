@@ -5,18 +5,18 @@
     <update id="updatetTemployeeTbl" parameterType="com.app_kensyu.entity.TemployeeEntity">
         UPDATE rpcDB.TEMPLOYEE_TBL
         <set>
-            <if test="name != null and name != ''">NAME=#{name},</if>
-            <if test="sex != null and sex != ''">SEX=#{sex},</if>
-            <if test="birthday != null and birthday != ''">BIRTHDAY=#{birthday},</if>
-            <if test="zip != null and zip != ''">ZIP=#{zip},</if>
-            <if test="address1 != null and address1 != ''">ADDRESS1=#{address1},</if>
-            <if test="address2 != null and address2 != ''">ADDRESS2=#{address2},</if>
-            <if test="nyushaym != null and nyushaym != ''">NYUSHAYM=#{nyushaym},</if>
-            <if test="division != null and division != ''">DIVISION=#{division},</if>
-            <if test="hobby1 != null and hobby1 != ''">HOBBY1=#{hobby1},</if>
-            <if test="hobby2 != null and hobby2 != ''">HOBBY2=#{hobby2},</if>
-            <if test="hobby3 != null and hobby3 != ''">HOBBY3=#{hobby3},</if>
-            <if test="selfIntro != null and selfIntro != ''">SELF_INTRO=#{selfIntro}</if>
+            <if test="name != null">NAME=#{name},</if>
+            <if test="sex != null">SEX=#{sex},</if>
+            <if test="birthday != null">BIRTHDAY=#{birthday},</if>
+            <if test="zip != null">ZIP=#{zip},</if>
+            <if test="address1 != null">ADDRESS1=#{address1},</if>
+            <if test="address2 != null">ADDRESS2=#{address2},</if>
+            <if test="nyushaym != null">NYUSHAYM=#{nyushaym},</if>
+            <if test="division != null">DIVISION=#{division},</if>
+            <if test="hobby1 != null">HOBBY1=#{hobby1},</if>
+            <if test="hobby2 != null">HOBBY2=#{hobby2},</if>
+            <if test="hobby3 != null">HOBBY3=#{hobby3},</if>
+            <if test="selfIntro != null">SELF_INTRO=#{selfIntro}</if>
         </set>
         WHERE ID=#{id}
     </update>
