@@ -76,7 +76,7 @@ public class InsertForm {
     @Valid
     private List<TcareerDTO> tcareerList;
 
-    //職歴情報（出力用）
-    List<TcareerEntity> tcareerEntity;
+    //職歴情報テスト（出力用）
+    private List<TcareerEntity> tcareerEntityList;
 
 }

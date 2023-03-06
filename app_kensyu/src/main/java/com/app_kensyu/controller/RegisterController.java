@@ -32,14 +32,15 @@ public class RegisterController {
     @GetMapping("register")
     public String register(Model model) {
 
-        // 画面に表示する情報（性別、所属部署、趣味）をDBから取得し、リストに代入。
-        List<McodeEntity> mcodeList = selectService.mcode();
-
         // 性別、所属部署、趣味それぞれの情報を代入する変数
         Map<String, String> sexMap = new HashMap<String, String>();
         Map<String, String> divisionMap = new HashMap<String, String>();
         Map<String, String> hobbyMap = new HashMap<String, String>();
 
+        // 画面に表示する情報（性別、所属部署、趣味）をDBから取得し、リストに代入。
+        List<McodeEntity> mcodeList = selectService.mcode();
+
+        // [性別、所属部署、趣味]それぞれの変数（Map）に、データベースから取得した情報を代入。
         for (McodeEntity mcode : mcodeList) {
             if (mcode.getCLASSTYPE().equals("C0001")) {
                 sexMap.put(mcode.getCODE(), mcode.getCODENAME());

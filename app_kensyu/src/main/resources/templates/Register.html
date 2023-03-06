@@ -74,8 +74,7 @@
             <br>
           </th:block></td>
       </tr>
-      <tr class="
-            low_selfIntro">
+      <tr class="low_selfIntro">
         <td class="clm_label"><label for="selfIntro">自己紹介</label></td>
         <td class="clm_form"><textarea id="selfIntro" name="selfIntro" th:utext="${insertForm.selfIntro}" placeholder="自己紹介文を入力してください。" rows="3"
             cols="30"
@@ -92,7 +91,7 @@
           <td>案件名</td>
           <td>編集</td>
         </tr>
-        <th:block th:if="${tcareerList == null}">
+        <th:block th:if="${tcareerDataList == null}">
           <tr class="tcareerDataRow">
             <td><input type="date" class="startDate" th:field="*{tcareerList[0].startDate}"></td>
             <td><input type="date" class="endDate" th:field="*{tcareerList[0].endDate}"></td>
@@ -100,11 +99,11 @@
             <td><input type="button" value=削除 id="coldel_btn"></td>
           </tr>
         </th:block>
-        <th:block th:if="${tcareerList != null}">
-          <tr class="tcareerDataRow" th:each="tcareer, i : ${tcareerList}">
-            <td><input type="date" class="startDate" name="tcareerList[+${i.index}+].startDate" th:value="${tcareerList[i.index].startDate}"></td>
-            <td><input type="date" class="startDate" name="tcareerList[+${i.index}+].endDate}" th:value="${tcareerList[i.index].endDate}"></td>
-            <td><input type="text" class="startDate" name="tcareerList[+${i.index}+].proposition}" th:value="${tcareerList[i.index].proposition}"></td>
+        <th:block th:if="${tcareerDataList != null}">
+          <tr class="tcareerDataRow" th:each="tcareer, i : ${tcareerDataList}">
+            <td><input type="date" class="startDate" th:name="'tcareerList[' + ${i.index} + '].startDate'" th:value="${tcareer.startDate}"></td>
+            <td><input type="date" class="endDate" th:name="'tcareerList[' + ${i.index} + '].endDate'" th:value="${tcareer.endDate}"></td>
+            <td><input type="text" class="proposition" th:name="'tcareerList[' + ${i.index} + '].proposition'" th:value="${tcareer.proposition}"></td>
             <td><input type="button" value=削除 id="coldel_btn" onclick="coldel(this)"></td>
           </tr>
         </th:block>

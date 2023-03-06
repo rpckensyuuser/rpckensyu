@@ -34,14 +34,15 @@ public class CorrectionController {
     @GetMapping("correction")
     public String correction(@RequestParam long id, Model model) {
 
-        // 画面に表示する情報（性別、所属部署、趣味）をDBから取得し、リストに代入。
-        List<McodeEntity> mcodeList = selectService.mcode();
-
         // 性別、所属部署、趣味それぞれの情報を代入する変数
         Map<String, String> sexMap = new HashMap<String, String>();
         Map<String, String> divisionMap = new HashMap<String, String>();
         Map<String, String> hobbyMap = new HashMap<String, String>();
 
+        // 画面に表示する情報（性別、所属部署、趣味）をDBから取得し、リストに代入
+        List<McodeEntity> mcodeList = selectService.mcode();
+
+        // [性別、所属部署、趣味]それぞれの変数（Map）に、データベースから取得した情報を代入
         for (McodeEntity mcode : mcodeList) {
             if (mcode.getCLASSTYPE().equals("C0001")) {
                 sexMap.put(mcode.getCODE(), mcode.getCODENAME());
@@ -52,14 +53,10 @@ public class CorrectionController {
             }
         }
 
-        model.addAttribute("sexMap", sexMap);
-        model.addAttribute("divisionMap", divisionMap);
-        model.addAttribute("hobbyMap", hobbyMap);
-
-        // 社員情報を取得
+        // データベースから社員情報を取得
         TemployeeEntity temployee = selectService.OneTemployee(id);
-        // 職歴情報を取得
-        List<TcareerEntity> tcareerList = selectService.OneTcareer(id);
+        // データベースから職歴情報を取得
+        List<TcareerEntity> tcareerEntityList = selectService.OneTcareer(id);
 
         InsertForm insertForm = new InsertForm();
         insertForm.setId(temployee.getId());
@@ -75,10 +72,14 @@ public class CorrectionController {
         insertForm.setHobby2(temployee.getHobby2());
         insertForm.setHobby3(temployee.getHobby3());
         insertForm.setSelfIntro(temployee.getSelfIntro());
-        // insertForm.setTcareerEntity(tcareerList);
+        // insertForm.setTcareerEntityList(tcareerEntityList);
+
+        model.addAttribute("sexMap", sexMap);
+        model.addAttribute("divisionMap", divisionMap);
+        model.addAttribute("hobbyMap", hobbyMap);
 
         model.addAttribute("insertForm", insertForm);
-        model.addAttribute("tcareerList", tcareerList);
+        model.addAttribute("tcareerDataList", tcareerEntityList);
 
         return "Register";
     }
