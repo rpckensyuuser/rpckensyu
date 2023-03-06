@@ -18,6 +18,14 @@ $(function() {
 		$('#address1').val(data.address1 + data.address2);
 	}
 
+	var $count = $("input[type=checkbox]:checked").length;
+	var $not = $('input[type=checkbox]').not(':checked')
+	if ($count >= 3) {
+		$not.attr("disabled", true);
+	} else {
+		$not.attr("disabled", false);
+	}
+
 })
 
 
