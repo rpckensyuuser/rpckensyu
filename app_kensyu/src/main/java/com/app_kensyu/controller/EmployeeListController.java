@@ -49,7 +49,6 @@ public class EmployeeListController {
 
         // 検索した社員情報データを取得
         List<TemployeeEntity> temployeeEntityList = selectService.SearchTemployee(searchCriteria);
-        model.addAttribute("employeeListForm", new EmployeeListForm());
         model.addAttribute("temployeeList", temployeeEntityList);
 
         return "EmployeeList";

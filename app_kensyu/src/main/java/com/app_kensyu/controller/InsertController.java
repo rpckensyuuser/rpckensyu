@@ -52,7 +52,6 @@ public class InsertController {
     public String insert(@Valid @ModelAttribute InsertForm insertForm, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-
             List<String> errorList = new ArrayList<String>();
             for (ObjectError error : bindingResult.getAllErrors()) {
                 errorList.add(error.getDefaultMessage());

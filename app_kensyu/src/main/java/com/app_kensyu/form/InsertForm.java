@@ -12,7 +12,6 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Length;
 
 import com.app_kensyu.dto.TcareerDTO;
-import com.app_kensyu.entity.TcareerEntity;
 
 import lombok.Data;
 
@@ -75,8 +74,5 @@ public class InsertForm {
     @NotEmpty
     @Valid
     private List<TcareerDTO> tcareerList;
-
-    //職歴情報テスト（出力用）
-    private List<TcareerEntity> tcareerEntityList;
 
 }

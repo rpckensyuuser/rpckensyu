@@ -16,14 +16,11 @@
         SELECT * FROM rpcDB.TEMPLOYEE_TBL
         <where>
             <if test="name != null and name != ''">
-                NAME like #{name}
-            </if>
+                NAME LIKE CONCAT('%', #{name}, '%') </if>
             <if test="division != null and division != ''">
-                AND DIVISION = #{division}
-            </if>
+                AND DIVISION LIKE CONCAT('%', #{division}, '%') </if>
             <if test="freeWord != null and freeWord != ''">
-                AND SELF_INTRO like #{freeWord}
-            </if>
+                AND SELF_INTRO LIKE CONCAT('%', #{freeWord}, '%') </if>
         </where>
     </select>
 
