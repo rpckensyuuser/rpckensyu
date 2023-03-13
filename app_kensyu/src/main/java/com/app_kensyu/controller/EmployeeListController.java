@@ -47,6 +47,15 @@ public class EmployeeListController {
     @PostMapping("employeeList/search")
     public String searchEmployeeList(@ModelAttribute EmployeeListForm searchCriteria, Model model) {
 
+        // フリーワードに”男”または”女”か入力された場合、それぞれ”M”、”F”に置換
+        if (searchCriteria.getFreeWord() != null) {
+            if (searchCriteria.getFreeWord().equals("男")) {
+                searchCriteria.setFreeWord("M");
+            } else if (searchCriteria.getFreeWord().equals("女")) {
+                searchCriteria.setFreeWord("F");
+            }
+        }
+
         // 検索した社員情報データを取得
         List<TemployeeEntity> temployeeEntityList = selectService.SearchTemployee(searchCriteria);
         model.addAttribute("employeeListForm", new EmployeeListForm());
