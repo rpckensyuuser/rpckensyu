@@ -13,22 +13,33 @@
 
 
     <select id="SearchTemployeeTbl" resultType="com.app_kensyu.entity.TemployeeEntity">
-        SELECT * FROM rpcDB.TEMPLOYEE_TBL
+        SELECT employee.* FROM rpcDB.TEMPLOYEE_TBL as employee
+        LEFT OUTER JOIN
+        cur_common.MCODE_TBL as sex_code
+        ON
+        employee.SEX = sex_code.CODE
+        AND sex_code.CLASS_TYPE = 'C0001'
+        LEFT OUTER JOIN
+        cur_common.MCODE_TBL as
+        division_code
+        ON
+        employee.DIVISION = division_code.CODE
+        AND division_code.CLASS_TYPE = 'C0002'
         <where>
             <if test="name != null and name != ''">
                 NAME LIKE CONCAT('%', #{name}, '%')
-
             </if>
             <if test="division != null and division != ''">
                 AND DIVISION LIKE CONCAT('%', #{division}, '%')
             </if>
             <if test="freeWord != null and freeWord != ''">
-                AND ID like #{freeWord}
+                AND ID like CONCAT('%', #{freeWord}, '%')
                 or NAME LIKE CONCAT('%', #{freeWord}, '%')
-                or SEX LIKE CONCAT('%', #{freeWord}, '%')
+                or sex_code.CODE_NAME LIKE CONCAT('%', #{freeWord}, '%')
                 or BIRTHDAY LIKE CONCAT('%', #{freeWord}, '%')
-                or NYUSHAYM LIKE CONCAT('%', #{freeWord}, '%')
-                or DIVISION LIKE CONCAT('%', #{freeWord}, '%')
+                or
+                NYUSHAYM LIKE CONCAT('%', #{freeWord}, '%')
+                or division_code.CODE_NAME LIKE CONCAT('%', #{freeWord}, '%')
                 or SELF_INTRO LIKE CONCAT('%', #{freeWord}, '%')
             </if>
         </where>
